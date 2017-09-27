@@ -1,34 +1,74 @@
 const router = require("express").Router();
+var db = require("../../../../models");
 
 router.route('/')
     .all(function (req, res, next) {
         // runs for all HTTP verbs first
         // think of it as route specific middleware!
-        console.log("category route");
+
+        // adding ShindigId to the request body
+        req.body.ShindigId = req.baseUrl.substring(req.baseUrl.indexOf("shindig/") + 8, req.baseUrl.indexOf("/category"));
         next();
     })
     .get(function (req, res, next) {
-        res.json("get all categories");
+        db.Category.findAll({
+            where: {
+                ShindigId: req.body.ShindigId
+            }
+        }).then(function (dbCategory) {
+            res.json(dbCategory);
+        });
     })
     .post(function (req, res, next) {
-        res.json("create new category");
+        db.Category.create(req.body).then(function (dbCategory) {
+            res.json(dbCategory);
+        });
     });
 
 router.route('/:category_id')
     .all(function (req, res, next) {
         // runs for all HTTP verbs first
         // think of it as route specific middleware!
-        console.log("category id: " + req.params.category_id + " route");
+
+        // adding ShindigId to the request body
+        req.body.ShindigId = req.baseUrl.substring(req.baseUrl.indexOf("shindig/") + 8, req.baseUrl.indexOf("/category"));
+
         next();
     })
     .get(function (req, res, next) {
-        res.json("get " + req.params.category_id + " category");
+        db.Category.findOne({
+            where: {
+                id: req.params.category_id
+            }
+        }).then(function (dbCategory) {
+            res.json(dbCategory);
+        });
     })
     .put(function (req, res, next) {
-        res.json("update " + req.params.category_id + " category");
+        db.Category.update(
+            req.body,
+            {
+                where: {
+                    id: req.params.category_id
+                }
+            }).then(function (dbShindig) {
+                db.Category.findOne({
+                    where: {
+                        id: req.params.category_id
+                    }
+                }).then(function (dbCategory) {
+                    res.json(dbCategory);
+                });
+            });
     })
     .delete(function (req, res, next) {
-        res.json("delete " + req.params.category_id + " category");
+        db.Category.destroy({
+            where: {
+                id: req.params.category_id
+            }
+        }).then(function (dbCategory) {
+            res.json(dbCategory);
+        });
     });
 
 

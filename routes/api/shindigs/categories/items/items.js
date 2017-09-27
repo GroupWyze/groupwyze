@@ -1,34 +1,73 @@
 const router = require("express").Router();
+var db = require("../../../../../models");
 
 router.route('/')
     .all(function (req, res, next) {
         // runs for all HTTP verbs first
         // think of it as route specific middleware!
         console.log("item route");
+
+        // adding CategoryId to the request body
+        req.body.CategoryId = req.baseUrl.substring(req.baseUrl.indexOf("category/") + 9, req.baseUrl.indexOf("/item"));
+
         next();
     })
     .get(function (req, res, next) {
-        res.json("get all items for a category");
+        db.Item.findAll({
+            where: {
+                CategoryId: req.body.CategoryId
+            }
+        }).then(function (dbItem) {
+            res.json(dbItem);
+        });
     })
     .post(function (req, res, next) {
-        res.json("create new item for a category");
+        db.Item.create(req.body).then(function (dbItem) {
+            res.json(dbItem);
+        });
     });
 
 router.route('/:item_id')
     .all(function (req, res, next) {
         // runs for all HTTP verbs first
         // think of it as route specific middleware!
-        console.log("item id: " + req.params.item_id + " route");
+        req.body.CategoryId = req.baseUrl.substring(req.baseUrl.indexOf("category/") + 9, req.baseUrl.indexOf("/item"));
         next();
     })
     .get(function (req, res, next) {
-        res.json("get " + req.params.item_id + " item");
+        db.Item.findOne({
+            where: {
+                id: req.params.item_id
+            }
+        }).then(function (dbItem) {
+            res.json(dbItem);
+        });
     })
     .put(function (req, res, next) {
-        res.json("update " + req.params.item_id + " item");
+        db.Item.update(
+            req.body,
+            {
+                where: {
+                    id: req.params.item_id
+                }
+            }).then(function (dbItem) {
+                db.Item.findOne({
+                    where: {
+                        id: req.params.item_id
+                    }
+                }).then(function (dbItem) {
+                    res.json(dbItem);
+                });
+            });
     })
     .delete(function (req, res, next) {
-        res.json("delete " + req.params.item_id + " item");
+        db.Item.destroy({
+            where: {
+                id: req.params.item_id
+            }
+        }).then(function (dbItem) {
+            res.json(dbItem);
+        });
     });
 
 

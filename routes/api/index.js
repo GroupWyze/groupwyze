@@ -3,9 +3,9 @@ const shindigsRoutes = require("./shindigs");
 const usersRoutes = require("./users");
 
 // Shindig routes
-router.use("/shindigs", shindigsRoutes);
+router.use("/shindig", shindigsRoutes);
 
 // User routes
-router.use("/users", usersRoutes);
+router.use("/user", usersRoutes);
 
 module.exports = router;

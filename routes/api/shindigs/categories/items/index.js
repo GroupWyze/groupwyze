@@ -12,6 +12,6 @@ router.param(':item_id', function (req, res, next, id) {
 router.use("/", itemsRoutes);
 
 //Votes routes
-router.use("/:item_id/votes", votesRoutes);
+router.use("/:item_id/vote", votesRoutes);
 
 module.exports = router;

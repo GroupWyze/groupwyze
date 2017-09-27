@@ -1,4 +1,5 @@
 const router = require("express").Router();
+var db = require("../../../models");
 
 router.route('/')
   .all(function (req, res, next) {
@@ -7,11 +8,15 @@ router.route('/')
     next();
   })
   .get(function (req, res, next) {
-    res.json("return all shindigs");
+    //TODO: should return all shindigs for user
+    db.Shindig.findAll({}).then(function (dbShindig) {
+      res.json(dbShindig);
+    });
   })
   .post(function (req, res, next) {
-
-    res.json("create new shindig");
+    db.Shindig.create(req.body).then(function (dbShindig) {
+      res.json(dbShindig);
+    });
   });
 
 router.route('/:shindig_id')
@@ -22,13 +27,39 @@ router.route('/:shindig_id')
     next();
   })
   .get(function (req, res, next) {
-    res.json("get " + req.params.shindig_id + " shindig");
+    db.Shindig.findOne({
+      where: {
+        id: req.params.shindig_id
+      }
+    }).then(function (dbShindig) {
+      res.json(dbShindig);
+    });
   })
   .put(function (req, res, next) {
-    res.json("update " + req.params.shindig_id + " shindig");
+    db.Shindig.update(
+      req.body,
+      {
+        where: {
+          id: req.params.shindig_id
+        }
+      }).then(function (dbShindig) {
+        db.Shindig.findOne({
+          where: {
+            id: req.params.shindig_id
+          }
+        }).then(function (dbShindig) {
+          res.json(dbShindig);
+        });
+      });
   })
   .delete(function (req, res, next) {
-    res.json("delete " + req.params.shindig_id + " shindig");
+    db.Shindig.destroy({
+      where: {
+        id: req.params.shindig_id
+      }
+    }).then(function (dbShindig) {
+      res.json(dbShindig);
+    });
   });
 
 module.exports = router;

@@ -12,6 +12,6 @@ router.param(':category_id', function (req, res, next, id) {
 router.use("/", categoriesRoutes);
 
 //Items routes
-router.use("/:category_id/items", itemsRoutes);
+router.use("/:category_id/item", itemsRoutes);
 
 module.exports = router;
