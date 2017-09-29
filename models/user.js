@@ -3,20 +3,16 @@ module.exports = function (sequelize, DataTypes) {
 
     var User = sequelize.define("User", {
         name: { type: DataTypes.STRING, allowNull: false },
-        url: { type: DataTypes.STRING, allowNull: false },
-        imageUrl: { type: DataTypes.STRING, allowNull: true },
-        description: { type: DataTypes.TEXT, allowNull: true },
-        yelpId: { type: DataTypes.STRING, allowNull: true },
-        deletedAt: { type: DataTypes.DATE, allowNull: true }
+        email: { type: DataTypes.STRING, allowNull: false },
+        password: { type: DataTypes.STRING, allowNull: false },
+        imageUrl: { type: DataTypes.STRING, allowNull: true }
     });
 
     User.associate = function (models) {
-        // Associating User with votes
-        User.hasMany(models.ShindigUser, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+        // Associating User with shindigs
+
+        User.belongsToMany(models.Shindig, {through: models.ShindigUser});
+
     };
 
 

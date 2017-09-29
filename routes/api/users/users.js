@@ -1,4 +1,5 @@
 const router = require("express").Router();
+var db = require("../../../models");
 
 router.route('/')
   .all(function (req, res, next) {
@@ -8,10 +9,14 @@ router.route('/')
     next();
   })
   .get(function (req, res, next) {
-    res.json("get all users");
+    db.User.findAll({}).then(function (dbUser) {
+      res.json(dbUser);
+    });
   })
   .post(function (req, res, next) {
-    res.json("create new user");
+    db.User.create(req.body).then(function (dbUser) {
+      res.json(dbUser);
+    });
   });
 
 router.route('/:user_id')
@@ -22,13 +27,39 @@ router.route('/:user_id')
     next();
   })
   .get(function (req, res, next) {
-    res.json("get " + req.params.user_id + " user");
+    db.User.findOne({
+      where: {
+        id: req.params.user_id
+      }
+    }).then(function (dbUser) {
+      res.json(dbUser);
+    });
   })
   .put(function (req, res, next) {
-    res.json("update " + req.params.user_id + " user");
+    db.User.update(
+      req.body,
+      {
+        where: {
+          id: req.params.user_id
+        }
+      }).then(function (dbUser) {
+        db.User.findOne({
+          where: {
+            id: req.params.user_id
+          }
+        }).then(function (dbUser) {
+          res.json(dbUser);
+        });
+      });
   })
   .delete(function (req, res, next) {
-    res.json("delete " + req.params.user_id + " user");
+    db.User.destroy({
+      where: {
+        id: req.params.user_id
+      }
+    }).then(function (dbUser) {
+      res.json(dbUser);
+    });
   });
 
 router.route('/:user_id/shindigs')
@@ -39,21 +70,6 @@ router.route('/:user_id/shindigs')
   })
   .get(function (req, res, next) {
     res.json("return all shindigs for the user");
-  });
-
-router.route('/:user_id/shindigs/:shindig_id')
-  .all(function (req, res, next) {
-    // runs for all HTTP verbs first
-    // think of it as route specific middleware!
-    console.log("shindig id: " + req.params.shindig_id);
-    next();
-  })
-  .put(function (req, res, next) {
-    res.json("add new shindig to the user");
-  })
-  .delete(function (req, res, next) {
-    console.log(req);
-    res.json("delete " + req.params.shindig_id + " shindig from user " + req.params.user_id);
   });
 
 
