@@ -4,14 +4,16 @@ module.exports = function (sequelize, DataTypes) {
 
 
     var ShindigUser = sequelize.define("ShindigUser", {
-        isHost: { type: DataTypes.BOOLEAN, allowNull: false },
-        canEdit: { type: DataTypes.BOOLEAN, allowNull: false },
-        canInvite: { type: DataTypes.BOOLEAN, allowNull: false },
-        canVote: { type: DataTypes.BOOLEAN, allowNull: false },
-        isAttending: { type: DataTypes.BOOLEAN, allowNull: false },
-        votesRemaining: { type: DataTypes.INTEGER, defaultValue: 5, allowNull: false },
-        deletedAt: { type: DataTypes.DATE, allowNull: true }
-    });
+        isHost: { type: DataTypes.BOOLEAN, defaultValue: false, allowNull: false },
+        canEdit: { type: DataTypes.BOOLEAN, defaultValue: true, allowNull: false },
+        canInvite: { type: DataTypes.BOOLEAN, defaultValue: true, allowNull: false },
+        canVote: { type: DataTypes.BOOLEAN, defaultValue: true, allowNull: false },
+        acceptedInvite: { type: DataTypes.BOOLEAN, defaultValue: false, allowNull: false },
+        isAttending: { type: DataTypes.BOOLEAN, allowNull: true },
+        votesRemaining: { type: DataTypes.INTEGER, defaultValue: 5, allowNull: false }
+    }, {
+            paranoid: true
+        });
 
     ShindigUser.associate = function (models) {
         // Associating User with votes
