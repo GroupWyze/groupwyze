@@ -39,7 +39,7 @@ Logged.muiName = 'IconMenu';
  * This example is taking advantage of the composability of the `AppBar`
  * to render different components depending on the application state.
  */
-class AppBarExampleComposition extends Component {
+class Navbar extends Component {
   state = {
     logged: true,
   };
@@ -47,8 +47,6 @@ class AppBarExampleComposition extends Component {
   handleChange = (event, logged) => {
     this.setState({logged: logged});
   };
-
-//   iconElementLeft={<IconButton><NavigationClose /></IconButton>}
 
   render() {
     return (
@@ -70,4 +68,4 @@ class AppBarExampleComposition extends Component {
   }
 }
 
-export default AppBarExampleComposition;
+export default Navbar;
