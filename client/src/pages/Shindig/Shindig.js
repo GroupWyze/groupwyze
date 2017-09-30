@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Sidebar from "../../components/Sidebar";
+import Categories from "../../components/Categories";
 import API from "../../utils/API";
 
 
@@ -16,6 +17,7 @@ class Shindig extends Component {
             zip: "",
             shindigTime: "",
             collapseTime: "",
+            categories: []
         };
     }
 
@@ -36,9 +38,13 @@ class Shindig extends Component {
                 zip: res.data.zip,
                 shindigTime: res.data.shindigTime,
                 collapseTime: res.data.collapseTime
-
-
             }))
+            .then(API.getAllCategories(this.state.shindigId)
+                .then(res => this.setState({
+                    categories: res.data
+                }))
+                .catch(err => console.log(err))
+            )
             .catch(err => console.log(err));
     };
 
@@ -51,10 +57,15 @@ class Shindig extends Component {
                         description={this.state.description}
                         shindigId={this.state.shindigId}
                         location={this.state.address ? this.state.address + ", " + this.state.city + ", " + this.state.zip : this.state.city}
-                        shindigTime={this.state.shindigTime} 
+                        shindigTime={this.state.shindigTime}
                         collapseTime={this.state.collapseTime}
                     />
                 </div>
+                {/* <div className="col s12 m8 l9">
+                    <Categories
+                        categories={this.state.categories}
+                    />
+                </div> */}
             </div>
         );
     }
