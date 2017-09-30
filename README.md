@@ -16,5 +16,6 @@ GroupWyze allows users to create an event, shindig, hangout, party, concert, hap
 <li>Passport JS </li>
 <li>Yelp API </li>
 <li>Passport JS </li>
+<li>Moment JS </li>
 
 ### App deployed on Heroku: <a href="https://groupwyze.herokuapp.com/"> https://groupwyze.herokuapp.com/ </a> and www.groupwyze.com 
