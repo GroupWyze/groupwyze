@@ -111,12 +111,12 @@ export default {
     // ===================================================
 
         // creates a vote for a given item 
-    createVote: function (shindigId, itemData) {
+    createVote: function (shindigId, categoryId, itemId, itemData) {
         return axios.post("/api/shindig/" + shindigId + "/category/" + categoryId + "/item/" + itemId + "/vote", itemData);
     },
 
     // Gets all votes for a given item
-    getAllVotes: function (shindigId) {
+    getAllVotes: function (shindigId, categoryId, itemId) {
         return axios.get("/api/shindig/" + shindigId + "/category" + categoryId + "/item/" + itemId + "/vote");
     },
 

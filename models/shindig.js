@@ -9,6 +9,7 @@ module.exports = function (sequelize, DataTypes) {
         city: { type: DataTypes.STRING, allowNull: false },
         address: { type: DataTypes.STRING, allowNull: true },
         collapseTime: { type: DataTypes.DATE, defaultValue: DataTypes.NOW, allowNull: false },
+        shindigTime: {type: DataTypes.DATE, allowNull: false},
         description: { type: DataTypes.TEXT, allowNull: true }
     }, {
             paranoid: true
