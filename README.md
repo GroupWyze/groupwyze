@@ -1,84 +1,23 @@
-# Create React Express App
+# GroupWyze
 
-## About This Boilerplate
+## A social App to create, coordinate and democratize your social events. 
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+GroupWyze allows users to create an event, shindig, hangout, party, concert, happy hour, team building and general shenanigans on a single page. Friends, family, colleagues and acquaintences can vote on particular event details to democratize and maximize fun! User can then return to their history and review their past social calendars, see who's been their best party friend, and review their data. 
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+## GroupWyze is built on the following technologies:
+<li>React</li>
+<li>React Router </li>
+<li>MySQL </li>
+<li>Sequelize </li>
+<li>Material UI </li>
+<li>Material </li>
+<li>Socket IO </li>
+<li>Express Server </li>
+<li>Passport JS </li>
+<li>Yelp API </li>
+<li>Passport JS </li>
+<li>Moment JS </li>
+<li>Heroku </li>
+<li>Google Domains </li>
 
-## Starting the app locally
-
-Start by installing front and backend dependencies. While in this directory, run the following commands:
-
-```
-yarn install
-cd client
-yarn install
-cd ..
-``
-
-After both installations complete, run the following command in your terminal:
-
-```
-yarn start
-```
-
-That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-### Create a Git Repo
-
-Once you're ready to deploy, start by making sure your project is a git repository. If so, proceed to the next section, otherwise run the following commands in your terminal:
-
-```
-git init
-git add .
-git commit -m "Initial commit"
-```
-
-### Heroku
-
-Make sure that you have a Heroku app created for this project. If so, proceed to the next section, otherwise run the following command in your terminal:
-
-```
-heroku create
-```
-
-Optionally add an argument for your application's name after `create`, e.g.
-
-```
-heroku myawesomeapp
-```
-
-### Deploying
-
-#### Option 1
-
-Use the deploy script inside of the outer `package.json`
-
-After confirming that you have an up to date git repository and a Heroku app created, run the following command to deploy:
-
-```
-yarn deploy
-```
-
-If all previous steps were followed correctly, your application should be deployed to Heroku!
-
-#### Option 2
-
-Manually deploy 
-
-After confirming that you have an up to date git repository and a Heroku app created, complete the following:
-
-1. Build the React app for production by running the following command:
-
-```
-yarn build
-```
-
-2. Add and commit all changes to git
-
-3. Push to Heroku
-
-If all previous steps were followed correctly, your application should be deployed to Heroku!
+### App deployed on Heroku: <a href="https://groupwyze.herokuapp.com/"> https://groupwyze.herokuapp.com/ </a> and www.groupwyze.com 

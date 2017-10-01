@@ -29,6 +29,7 @@ app.get("*", function (req, res) {
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 
+// setting force settings for dev vs prod env
 let force;
 if (process.env.NODE_ENV === "production") {
   force = false;
