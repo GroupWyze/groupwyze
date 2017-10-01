@@ -16,7 +16,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Shindig} />
               <Route exact path="/shindig/:shindigId" component={Shindig} />
-              <Route path="*" component={NoMatch} />
+              <Route component={NoMatch} />
             </Switch>
           </div>
         </Router>
