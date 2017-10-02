@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
+import Subheader from 'material-ui/Subheader';
 import API from "../../utils/API";
 
 const styles = {
@@ -60,6 +61,7 @@ class CategorySettings extends Component {
         return (
             <form>
                 <div className="row">
+                    <Subheader>Edit Category Settings</Subheader>
                     <label>Category Name</label>
                     <input
                         value={this.state.categoryName}
