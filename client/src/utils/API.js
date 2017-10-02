@@ -161,7 +161,7 @@ export default {
     },
 
     // Gets all shindigs for a user
-    getAllUsers: function (userId) {
+    getAllShindigsForUser: function (userId) {
         return axios.get("/api/user" + userId + "/shindig");
     },
 

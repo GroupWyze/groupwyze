@@ -8,8 +8,11 @@ class Shindig extends Component {
     constructor(props) {
         super(props);
 
+        let pathname = window.location.pathname;
+        let id = pathname.substring(pathname.indexOf("shindig/") + 8);
+        
         this.state = {
-            shindigId: "",
+            shindigId: id,
             name: "",
             description: "",
             address: "",
@@ -22,12 +25,11 @@ class Shindig extends Component {
     }
 
     componentDidMount() {
-        let pathname = window.location.pathname;
-        let id = pathname.substring(pathname.indexOf("shindig/") + 8);
-        this.loadShindig(id);
+        this.loadShindig(this.state.shindigId);
+        this.loadCategories(this.state.shindigId);
     }
 
-    loadShindig = (id) => {
+    loadShindig = id => {
         API.getShindig(id)
             .then(res => this.setState({
                 shindigId: res.data.id,
@@ -39,19 +41,28 @@ class Shindig extends Component {
                 shindigTime: res.data.shindigTime,
                 collapseTime: res.data.collapseTime
             }))
-            .then(API.getAllCategories(this.state.shindigId)
-                .then(res => this.setState({
-                    categories: res.data
-                }))
-                .catch(err => console.log(err))
-            )
             .catch(err => console.log(err));
     };
 
+    loadCategories = shindigId => {
+        API.getAllCategories(this.state.shindigId)
+            .then(res => this.setState({
+                categories: res.data
+            }))
+            .catch(err => console.log(err));
+    };
+
+    handleCategoryChange = shindigId => {
+        this.loadCategories(shindigId);
+    }
+
     render() {
+
+        const handleCategoryChange = this.handleCategoryChange;
+
         return (
             <div className="row">
-                <div className="col s12 m4 l3">
+                <div className="col s12 m4 l3 grey lighten-5">
                     <Sidebar
                         name={this.state.name}
                         description={this.state.description}
@@ -61,11 +72,13 @@ class Shindig extends Component {
                         collapseTime={this.state.collapseTime}
                     />
                 </div>
-                {/* <div className="col s12 m8 l9">
+                 <div className="col s12 m8 l9">
                     <Categories
+                        onCategoriesChange={handleCategoryChange} 
                         categories={this.state.categories}
+                        shindigId={this.state.shindigId}
                     />
-                </div> */}
+                </div> 
             </div>
         );
     }
