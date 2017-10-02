@@ -11,7 +11,8 @@ const styles = {
     floatingActionButtonStyle: {
         position: "fixed",
         bottom: "23px",
-        right: "23px"
+        right: "23px",
+        zIndex: 1
     },
     buttonStyle: {
         marginRight: 20,

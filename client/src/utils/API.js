@@ -82,7 +82,7 @@ export default {
 
     // Gets all items for a given category
     getAllItems: function (shindigId, categoryId) {
-        return axios.get("/api/shindig/" + shindigId + "/category" + categoryId + "/item/");
+        return axios.get("/api/shindig/" + shindigId + "/category/" + categoryId + "/item");
     },
 
     // Gets the item with the given shindigId and categoryId
@@ -111,18 +111,18 @@ export default {
     // ===================================================
 
         // creates a vote for a given item 
-    createVote: function (shindigId, categoryId, itemId, itemData) {
-        return axios.post("/api/shindig/" + shindigId + "/category/" + categoryId + "/item/" + itemId + "/vote", itemData);
+    createVote: function (shindigId, categoryId, itemId) {
+        return axios.post("/api/shindig/" + shindigId + "/category/" + categoryId + "/item/" + itemId + "/vote");
     },
 
     // Gets all votes for a given item
     getAllVotes: function (shindigId, categoryId, itemId) {
-        return axios.get("/api/shindig/" + shindigId + "/category" + categoryId + "/item/" + itemId + "/vote");
+        return axios.get("/api/shindig/" + shindigId + "/category/" + categoryId + "/item/" + itemId + "/vote");
     },
 
     // Deletes all of the votes for a given item for a given user
-    deleteAllVotesOnItemForUser: function (shindigId, categoryId, itemId, userData) {
-        return axios.delete("/api/shindig/" + shindigId + "/category/" + categoryId + "/item/" + itemId + "/vote", userData);
+    deleteAllVotesOnItemForUser: function (shindigId, categoryId, itemId, voteData) {
+        return axios.delete("/api/shindig/" + shindigId + "/category/" + categoryId + "/item/" + itemId + "/vote", voteData);
     },
 
 

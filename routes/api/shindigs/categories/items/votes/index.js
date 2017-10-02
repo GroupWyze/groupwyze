@@ -21,7 +21,7 @@ router.route('/')
         });
     })
     .post(function (req, res, next) {
-        db.Vote.create(req.body).then(function (dbVote) {
+        db.Vote.create().then(function (dbVote) {
             res.json(dbVote);
         });
     })
