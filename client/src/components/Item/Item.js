@@ -1,9 +1,8 @@
 import React from "react";
-// import { ListItem } from 'material-ui/List';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import ArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
-import { fullWhite, red500} from 'material-ui/styles/colors';
+import { fullWhite, red500 } from 'material-ui/styles/colors';
 import LinearProgress from 'material-ui/LinearProgress';
 
 
@@ -12,6 +11,16 @@ const Item = props => {
 
     const itemDetails = [];
 
+    let votePercentage;
+
+    props.votes.forEach(v => {
+        if (props.itemId === v.itemId) {
+            votePercentage = v.percent
+        }
+    })
+
+    // Adds http:// to user provided urls if they weren't provided.
+    // Required for href's to be functional
     function addhttp(url) {
         if (!/^(f|ht)tps?:\/\//i.test(url)) {
             url = "http://" + url;
@@ -19,9 +28,23 @@ const Item = props => {
         return url;
     }
 
+    // Determines the length of the item description, and limits the length
+    const createSubtitle = itemDescription => {
+        if (itemDescription.length > 25) {
+            return itemDescription.substring(0, 24) + "...";
+        } else {
+            return itemDescription;
+        }
+    }
+
+    // Adds itemDescription to the itemDetails array if it exists
     props.itemDescription ? itemDetails.push(props.itemDescription) : console.log("No description");
+
+    // Adds itemUrl to the itemDetails array if it exists
     props.itemUrl ? itemDetails.push(addhttp(props.itemUrl)) : console.log("No url");
 
+
+    // Creates the items that will be displayed in the dropdown for the item
     const nestedItems = itemDetails.map(item => {
 
         // Determine if this is a url
@@ -43,10 +66,11 @@ const Item = props => {
             <Card>
                 <CardHeader
                     title={props.itemName}
-                    subtitle={props.itemDescription ? props.itemDescription.substring(0, 24) + "..." : ""}
+                    subtitle={props.itemDescription ? createSubtitle(props.itemDescription) : undefined}
                     actAsExpander={false}
                     showExpandableButton={true}
                     avatar={<Avatar
+                        onClick={(e) => props.handleAddVote(e, props.itemId)}
                         icon={<ArrowUpward />}
                         color={fullWhite}
                         backgroundColor={red500}
@@ -56,7 +80,7 @@ const Item = props => {
                 <CardText expandable={true}>{nestedItems}</CardText>
                 <LinearProgress
                     mode="determinate"
-                    value={20}
+                    value={votePercentage}
                     style={{
                         height: "8px"
                     }}

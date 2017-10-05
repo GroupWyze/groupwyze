@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Mern Demo",
   "main": "server.js",
-  "homepage" : "https://groupwyze.herokuapp.com/",
+  "homepage": "https://groupwyze.herokuapp.com/",
   "scripts": {
     "server": "node server.js",
     "client": "cd client && npm run start",
@@ -25,6 +25,7 @@
     "mysql2": "^1.4.2",
     "react-router-dom": "^4.2.2",
     "react-tap-event-plugin": "^3.0.0",
-    "sequelize": "^4.11.1"
+    "sequelize": "^4.11.1",
+    "socket.io": "^2.0.3"
   }
 }

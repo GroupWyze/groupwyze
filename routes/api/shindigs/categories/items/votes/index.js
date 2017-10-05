@@ -8,20 +8,21 @@ router.route('/')
         // think of it as route specific middleware!
         console.log("vote route");
         req.body.ItemId = req.baseUrl.substring(req.baseUrl.indexOf("item/") + 5, req.baseUrl.indexOf("/vote"));
+        req.body.CategoryId = req.baseUrl.substring(req.baseUrl.indexOf("category/") + 9, req.baseUrl.indexOf("/item"));
 
         next();
     })
     .get(function (req, res, next) {
         db.Vote.findAll({
             where: {
-                ItemId: req.body.ItemId
+                CategoryId: req.body.CategoryId
             }
         }).then(function (dbVote) {
             res.json(dbVote);
         });
     })
     .post(function (req, res, next) {
-        db.Vote.create().then(function (dbVote) {
+        db.Vote.create(req.body).then(function (dbVote) {
             res.json(dbVote);
         });
     })
