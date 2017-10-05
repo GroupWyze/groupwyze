@@ -19,5 +19,7 @@ GroupWyze allows users to create an event, shindig, hangout, party, concert, hap
 <li>Moment JS </li>
 <li>Heroku </li>
 <li>Google Domains </li>
+<li>Auth0 </il>
+<li>History </il>
 
 ### App deployed on Heroku: <a href="https://groupwyze.herokuapp.com/"> https://groupwyze.herokuapp.com/ </a> and www.groupwyze.com 
