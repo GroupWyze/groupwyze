@@ -3,7 +3,7 @@ const path = require("path");
 const routes = require("./routes");
 const db = require("./models");
 var bodyParser = require("body-parser");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3333;
 const app = express();
 
 // auth0 imports

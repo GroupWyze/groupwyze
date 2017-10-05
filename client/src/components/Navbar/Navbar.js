@@ -8,15 +8,22 @@ import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ActionHome from 'material-ui/svg-icons/action/home';
 
+import Auth from '../../auth/Auth.js';
+
+
+
+// TODO: IN THIS COMPONENT SET THE HOOK FOR AUTH0
 class Login extends Component {
   static muiName = 'FlatButton';
 
   render() {
     return (
-      <FlatButton {...this.props} label="Login" />
+      <FlatButton {...this.props} label="Login"/>
     );
   }
 }
+
+// TODO: Set a Signup 
 
 const Logged = (props) => (
   <IconMenu
@@ -29,7 +36,7 @@ const Logged = (props) => (
   >
     <MenuItem primaryText="My Page" />
     <MenuItem primaryText="Create Shindig" />
-    <MenuItem primaryText="Sign out" />
+    <MenuItem primaryText="Sign out"/>
   </IconMenu>
 );
 
@@ -40,6 +47,7 @@ Logged.muiName = 'IconMenu';
  * to render different components depending on the application state.
  */
 class Navbar extends Component {
+  
   state = {
     logged: true,
   };
@@ -47,22 +55,27 @@ class Navbar extends Component {
   handleChange = (event, logged) => {
     this.setState({logged: logged});
   };
-
+  
   render() {
+    const {isAuthenticated} = this.props.auth;
+
+    console.log(this.props.logIn)
+    // this.setState({logged: isAuthenticated()})
     return (
       <div>
         <AppBar
           title="GroupWyze"
-          iconElementLeft={<IconButton><ActionHome /></IconButton>}
-          iconElementRight={this.state.logged ? <Logged /> : <Login />}
+          iconElementLeft={<IconButton ><ActionHome /></IconButton>}
+          iconElementRight={isAuthenticated() ? <Logged /> : <Login />}
+          
         />
-        <Toggle
+        {/* <Toggle
           label="Logged"
           defaultToggled={true}
           onToggle={this.handleChange}
           labelPosition="right"
           style={{margin: 20}}
-        />
+        /> */}
       </div>
     );
   }
