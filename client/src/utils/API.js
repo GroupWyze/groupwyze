@@ -116,8 +116,13 @@ export default {
     },
 
     // Gets all votes for a given item
-    getAllVotes: function (shindigId, categoryId, itemId) {
+    getVotesForItem: function (shindigId, categoryId, itemId) {
         return axios.get("/api/shindig/" + shindigId + "/category/" + categoryId + "/item/" + itemId + "/vote");
+    },
+
+    // Gets all votes for a given category
+    getAllVotesForCategory: function (shindigId, categoryId, itemId) {
+        return axios.get("/api/shindig/" + shindigId + "/category/" + categoryId + "/vote");
     },
 
     // Deletes all of the votes for a given item for a given user

@@ -4,6 +4,8 @@ import Item from '../Item';
 const ItemList = props => {
 
     const items = props.items.map(item => {
+
+
         // Determine if this is a yelp item
         // const isYelpItem = item.yelpId ? true : false;
 
@@ -18,16 +20,18 @@ const ItemList = props => {
         //         />
         //     );
         // } else {
-            return (
-                <Item
-                    key={item.id}
-                    itemId={item.id}
-                    itemName={item.name}
-                    itemDescription={item.description}
-                    itemUrl={item.url}
-                    isVoteEnabled={true}
-                />
-            );
+        return (
+            <Item
+                key={item.id}
+                itemId={item.id}
+                itemName={item.name}
+                itemDescription={item.description}
+                itemUrl={item.url}
+                isVoteEnabled={true}
+                handleAddVote={props.handleAddVote}
+                votes={props.votes}
+            />
+        );
         // };
     });
 

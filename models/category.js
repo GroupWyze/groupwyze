@@ -17,6 +17,13 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false
       }
     });
+
+    Category.hasMany(models.Vote, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
   };
 
   return Category;

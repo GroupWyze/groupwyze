@@ -4,11 +4,13 @@ import ItemList from '../ItemList';
 import AddItem from '../AddItem';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
+import Snackbar from 'material-ui/Snackbar';
 import Setting from 'material-ui/svg-icons/action/settings';
 import Search from 'material-ui/svg-icons/action/search';
 import ViewList from 'material-ui/svg-icons/action/view-list';
 import Add from 'material-ui/svg-icons/content/add';
 import API from "../../utils/API";
+
 
 const styles = {
     categoryCard: {
@@ -23,13 +25,45 @@ class Category extends Component {
         this.state = {
             shindigId: props.shindigId,
             categoryId: props.categoryData.id,
-            items: []
+            items: [],
+            votes: [],
+            snackbarOpen: false,
+            snackbarMessage: ""
         };
     }
 
     componentDidMount() {
-        this.loadItems(this.state.shindigId);
+        this.loadItems();
+        this.setVotePolling();
     }
+
+    componentWillUnmount() {
+        clearInterval();
+    }
+
+    setVotePolling = () => {
+        setInterval(() => {
+            API.getAllVotesForCategory(this.state.shindigId, this.state.categoryId)
+                .then(res => {
+                    let totalVoteCount = 0;
+                    let votePercentage = [];
+
+                    //Get total votes applied
+                    res.data.forEach(item => totalVoteCount += item.count);
+
+                    //
+                    res.data.forEach(item => {
+                        votePercentage.push({
+                            itemId: item.ItemId,
+                            percent: Math.round((item.count/totalVoteCount)*100)
+                        })
+                    })
+                    this.setState({votes: votePercentage});
+                })
+                .catch(err => console.log(err));
+        }, 5000);
+    }
+
 
     loadItems = () => {
         API.getAllItems(this.state.shindigId, this.state.categoryId)
@@ -39,16 +73,42 @@ class Category extends Component {
             .catch(err => console.log(err));
     };
 
-    handleAddVote = e => {
+    handleAddVote = (e, itemId) => {
         e.preventDefault();
 
         const shindigId = this.state.shindigId;
         const categoryId = this.state.categoryId;
-        const itemId = this.state.itemId;
 
-        API.createVote(shindigId, categoryId, itemId)
-            .then()
-            .catch(err => console.log(err));
+        //determine if user still has votes to give for the category
+
+        let votesApplied = this.getVoteCountForUserForCategory(shindigId, categoryId, itemId);
+        if (votesApplied < 3) {
+            API.createVote(shindigId, categoryId, itemId)
+                .then(localStorage.setItem(categoryId, votesApplied + 1))
+                .then(this.handleOpenSnackbar("Vote applied"))
+                .catch(err => console.log(err));
+        } else {
+            this.handleOpenSnackbar("You've used all of your votes for this category")
+        }
+
+    }
+
+    getVoteCountForUserForCategory = (shindigId, categoryId, itemId) => {
+        console.log("Category Id: " + categoryId);
+        let votesApplied = parseInt(localStorage.getItem(categoryId), 10);
+        console.log("getVoteCountForUserForCategory votesApplied: " + votesApplied);
+        if (!votesApplied) {
+            console.log("null path");
+            return 0;
+        } else {
+            console.log("return " + votesApplied);
+            return votesApplied;
+        }
+
+        // TODO: add API.getAllVotesForUser.
+        // This is a backup for if the number of votes they have used
+        // for a category is no longer in local storage
+
     }
 
     onNameChange = itemName => {
@@ -59,47 +119,75 @@ class Category extends Component {
         this.setState({ itemDescription });
     }
 
+    handleOpenSnackbar = (message) => {
+        this.setState({
+            snackbarOpen: true,
+            snackbarMessage: message
+        });
+    };
+
+    handleRequestClose = () => {
+        this.setState({
+            snackbarOpen: false,
+            snackbarMessage: ""
+        });
+    };
+
     render() {
 
         return (
-            <Card style={styles.categoryCard}>
-                <CardTitle title={this.props.categoryData.name} />
-                <Tabs>
-                    <Tab icon={<ViewList />}>
-                        <CardText expandable={false}>
-                            <ItemList shindigId={this.state.shindigId} categoryId={this.state.categoryId} items={this.state.items}/>
-                        </CardText>
-                    </Tab>
-                    <Tab icon={<Add />} >
-                        <CardText expandable={false}>
-                            <AddItem
-                                shindigId={this.props.shindigId}
-                                categoryData={this.props.categoryData}
-                                onItemAdd={this.loadItems}
-                            />
-                        </CardText>
-                    </Tab>
-                    <Tab display={this.props.categoryData.yelpEnabled} icon={<Search />} >
-                        <CardText expandable={false}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <div>
+                <Card style={styles.categoryCard}>
+                    <CardTitle title={this.props.categoryData.name} />
+                    <Tabs>
+                        <Tab icon={<ViewList />}>
+                            <CardText expandable={false}>
+                                <ItemList
+                                    shindigId={this.state.shindigId}
+                                    categoryId={this.state.categoryId}
+                                    items={this.state.items}
+                                    handleAddVote={this.handleAddVote}
+                                    votes={this.state.votes}
+                                />
+                            </CardText>
+                        </Tab>
+                        <Tab icon={<Add />} >
+                            <CardText expandable={false}>
+                                <AddItem
+                                    shindigId={this.props.shindigId}
+                                    categoryData={this.props.categoryData}
+                                    onItemAdd={this.loadItems}
+                                />
+                            </CardText>
+                        </Tab>
+                        <Tab display={this.props.categoryData.yelpEnabled} icon={<Search />} >
+                            <CardText expandable={false}>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
                         Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
                         Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
                     </CardText>
-                    </Tab>
-                    <Tab icon={<Setting />} >
-                        <CardText expandable={false}>
-                            <CategorySettings
-                                shindigId={this.props.shindigId}
-                                categoryData={this.props.categoryData}
-                                onCategoriesChange={this.props.onCategoriesChange}
-                            />
-                        </CardText>
-                    </Tab>
+                        </Tab>
+                        <Tab icon={<Setting />} >
+                            <CardText expandable={false}>
+                                <CategorySettings
+                                    shindigId={this.props.shindigId}
+                                    categoryData={this.props.categoryData}
+                                    onCategoriesChange={this.props.onCategoriesChange}
+                                />
+                            </CardText>
+                        </Tab>
 
-                </Tabs>
+                    </Tabs>
 
-            </Card>
+                </Card>
+                <Snackbar
+                    open={this.state.snackbarOpen}
+                    message={this.state.snackbarMessage}
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose}
+                />
+            </div>
         );
     };
 };

@@ -71,5 +71,31 @@ router.route('/:category_id')
         });
     });
 
+router.route('/:category_id/vote')
+    .all(function (req, res, next) {
+        // runs for all HTTP verbs first
+        // think of it as route specific middleware!
+
+        // adding ShindigId to the request body
+        req.body.ShindigId = req.baseUrl.substring(req.baseUrl.indexOf("shindig/") + 8, req.baseUrl.indexOf("/category"));
+
+        next();
+    })
+
+    // Get all votes for a category grouped by item id
+    .get(function (req, res, next) {
+
+        db.Vote.count({
+            where: {
+                CategoryId: req.params.category_id
+            },
+            group: ['ItemId'],
+            attributes: ['ItemId']
+        }).then(c => {
+            res.json(c);
+        });
+
+    })
+
 
 module.exports = router;
