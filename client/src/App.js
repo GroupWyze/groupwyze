@@ -5,6 +5,7 @@ import Shindig from "./pages/Shindig";
 import Navbar from "./components/Navbar";
 import NoMatch from "./components/NoMatch";
 import './App.css';
+import UserPage from './pages/Userpage.js';
 
 class App extends Component {
   render() {
@@ -16,6 +17,8 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Shindig} />
               <Route exact path="/shindig/:shindigId" component={Shindig} />
+              <Route exact path="/user/:user_id" component={UserPage} />
+
               <Route component={NoMatch} />
             </Switch>
           </div>

@@ -35,7 +35,7 @@ const Item = props => {
             return (
                 <p key={item.substring(0, 10)}>{item}</p>
             );
-        };
+        }
     });
 
     return (
