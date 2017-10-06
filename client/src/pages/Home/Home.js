@@ -9,7 +9,7 @@ class Home extends Component {
     this.props.auth.login();
   }
   render() {
-    const { isAuthenticated } = this.props.auth;
+    // const { isAuthenticated } = this.props.auth;
     return (
       <div className="container">
         {/* {

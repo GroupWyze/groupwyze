@@ -1,13 +1,14 @@
 import Auth0Lock from 'auth0-lock';
-import auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './auth0-variables';
+// import auth0 from 'auth0-js';
+// import { AUTH_CONFIG } from './auth0-variables';
 import history from '../history';
+
 
 export default class Auth {
   
 
 
-  lock = new Auth0Lock('h-db3TKF59gFCVMNPSxO02CmPvQHL9Nq', 'groupwyze.auth0.com', {
+  lock = new Auth0Lock('FfGbfN2mOaonCe41rMxNObLHuL2Jij8D', 'groupwyze.auth0.com', {
     oidcConformant: true,
     autoclose: true,
     auth: {
@@ -18,7 +19,17 @@ export default class Auth {
         scope: 'openid profile email'
       }
     },
-    loginAfterSignup: false
+    defaultDatabaseConnection: 'Username-Password-Authentication',
+    theme: {
+        logo: './favicon.ico',
+        primaryColor: '#F44336',
+        labeledSubmitButton: false
+    },
+    socialButtonStyle: 'small',
+    languageDictionary: {
+        title: 'GroupWyze'
+    }
+
   });
 
 //   auth0 = new auth0.WebAuth({
@@ -46,7 +57,9 @@ export default class Auth {
   // ===================================================
   login() {
     // Call the show method to display the widget.
-    this.lock.show();
+    this.lock.show({
+        autoParseHash: true
+    });
   }
 
   handleAuthentication() {

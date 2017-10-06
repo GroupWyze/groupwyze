@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Jumbotron from "./components/Jumbotron";
 
 import './App.css';
 
@@ -26,7 +26,7 @@ class App extends Component {
               logout={this.logout.bind(this)}
               isAuthenticated={isAuthenticated}
             />
-
+            <Jumbotron />
           </div>
       </MuiThemeProvider>
     );

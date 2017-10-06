@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
+// import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ActionHome from 'material-ui/svg-icons/action/home';
 
@@ -29,7 +29,7 @@ const Logged = (props) => (
   >
     <MenuItem primaryText="My Page" />
     <MenuItem primaryText="Create Shindig" />
-    <MenuItem primaryText="Sign out" />
+    <MenuItem primaryText="Sign out" onClick={()=>props.logout()} />
   </IconMenu>
 );
 
@@ -55,7 +55,7 @@ class Navbar extends Component {
           title="GroupWyze"
           iconElementLeft={<IconButton><ActionHome /></IconButton>}
           iconElementRight={this.state.logged ? 
-            <Logged onClick={()=>this.props.logout()}/> : <Login onClick={()=>this.props.login()}/>}
+            <Logged logout={this.props.logout}/> : <Login onClick={()=>this.props.login()}/>}
         />
       </div>
     );
