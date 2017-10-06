@@ -48,7 +48,11 @@ export default class ShindigForm extends React.Component {
         >
           What date would you like?
           <DatePicker hintText="Date Picker" />
+          <br />
+
           What time would you like to begin?
+          <br />
+
           <TimePicker />
           <br />
           What city would you like to host in?
