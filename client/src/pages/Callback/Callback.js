@@ -1,37 +1,27 @@
 import React, { Component } from 'react';
+import loading from './loading.svg';
 
-class Home extends Component {
-  login() {
-    this.props.auth.login();
-  }
+class Callback extends Component {
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const style = {
+      position: 'absolute',
+      display: 'flex',
+      justifyContent: 'center',
+      height: '100vh',
+      width: '100vw',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: 'white',
+    }
+
     return (
-      <div className="container">
-        {
-          isAuthenticated() && (
-              <h4>
-                You are logged in!
-              </h4>
-            )
-        }
-        {
-          !isAuthenticated() && (
-              <h4>
-                You are not logged in! Please{' '}
-                <a
-                  style={{ cursor: 'pointer' }}
-                  onClick={this.login.bind(this)}
-                >
-                  Log In
-                </a>
-                {' '}to continue.
-              </h4>
-            )
-        }
+      <div style={style}>
+        <img src={loading} alt="loading"/>
       </div>
     );
   }
 }
 
-export default Home;
+export default Callback;

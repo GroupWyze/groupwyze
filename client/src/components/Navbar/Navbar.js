@@ -41,7 +41,7 @@ Logged.muiName = 'IconMenu';
  */
 class Navbar extends Component {
   state = {
-    logged: true,
+    logged: this.props.isAuthenticated(),
   };
 
   handleChange = (event, logged) => {
@@ -54,14 +54,8 @@ class Navbar extends Component {
         <AppBar
           title="GroupWyze"
           iconElementLeft={<IconButton><ActionHome /></IconButton>}
-          iconElementRight={this.state.logged ? <Logged /> : <Login />}
-        />
-        <Toggle
-          label="Logged"
-          defaultToggled={true}
-          onToggle={this.handleChange}
-          labelPosition="right"
-          style={{margin: 20}}
+          iconElementRight={this.state.logged ? 
+            <Logged onClick={()=>this.props.logout()}/> : <Login onClick={()=>this.props.login()}/>}
         />
       </div>
     );

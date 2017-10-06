@@ -1,21 +1,34 @@
 import Auth0Lock from 'auth0-lock';
+import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
 import history from '../history';
 
 export default class Auth {
+  
 
-  lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
+
+  lock = new Auth0Lock('h-db3TKF59gFCVMNPSxO02CmPvQHL9Nq', 'groupwyze.auth0.com', {
     oidcConformant: true,
     autoclose: true,
     auth: {
-      redirectUrl: AUTH_CONFIG.callbackUrl,
+      redirectUrl: 'http://localhost:3000/callback',
       responseType: 'token id_token',
-      audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+      audience: `https://groupwyze.auth0.com/userinfo`,
       params: {
-        scope: 'openid'
+        scope: 'openid profile email'
       }
-    }
+    },
+    loginAfterSignup: false
   });
+
+//   auth0 = new auth0.WebAuth({
+//     domain: 'groupwyze.auth0.com',
+//     clientID: 'h-db3TKF59gFCVMNPSxO02CmPvQHL9Nq',
+//     redirectUri: 'http://localhost:3000/callback',
+//     audience: `https://groupwyze.auth0.com/userinfo`,
+//     responseType: 'token id_token',
+//     scope: 'openid profile email'
+//   });
 
   constructor() {
     this.handleAuthentication();
@@ -23,8 +36,14 @@ export default class Auth {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.getAccessToken = this.getAccessToken.bind(this);
+    this.getProfile = this.getProfile.bind(this);
   }
 
+
+  // Auth Lock Functions
+  // Handles Signup and Log in. 
+  // ===================================================
   login() {
     // Call the show method to display the widget.
     this.lock.show();
@@ -67,5 +86,32 @@ export default class Auth {
     // access token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+
   }
+
+  // Auth0 JS
+  //
+
+  getProfile(cb) {
+    let accessToken = this.getAccessToken();
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      cb(err, profile);
+    });
+  }
+
+  getAccessToken() {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('No access token found');
+    }
+    return accessToken;
+  }
+
+    
+
+
+
 }
