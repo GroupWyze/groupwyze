@@ -91,8 +91,10 @@ export default class ShindigForm extends React.Component {
             date: this.datePicker,
             time: this.timePicker,
             location: this.location
-        } */
-        /* postNewShindig(shindig);
+        } 
+        
+        
+        postNewShindig(shindig);
         getShindigId().then().redirect(shindigEventPage); */
         }
         </Dialog>
