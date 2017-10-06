@@ -9,21 +9,43 @@ import TimePicker from '../TimePicker';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import Location from '../Location';
+import API from "../../utils/API";
 
 /**
  * Dialogs can be nested. This example opens a Date Picker from within a Dialog.
  */
+
+let shindig = {
+    date: "",
+    time: "",
+    location: ""
+}
+
 export default class ShindigForm extends React.Component {
-  state = {
-    open: false,
-  };
+  constructor() {
+      super();
+    //   state ({
+    //     open: false,
+    //     user_id: "",
+    //     date: "",
+    //     time: "",
+    //     location: ""
+    //   })
+  }
 
   handleOpen = () => {
     this.setState({open: true});
   };
 
-  handleClose = () => {
-    this.setState({open: false});
+  handleClose = (e) => {
+    e.preventDefault();
+    this.setState({
+        open: false,
+        // user_id: {user_id},
+        // date: {date},
+        // time: {time},
+        // location: {location}
+    });
   };
 
   render() {
@@ -35,6 +57,12 @@ export default class ShindigForm extends React.Component {
         onClick={this.handleClose}
       />,
     ];
+
+
+    function postNewShindig(shindig) {
+        //send post here to database
+        // API.createShindig.(shindig);
+    }
 
     return (
       <div>
@@ -58,6 +86,15 @@ export default class ShindigForm extends React.Component {
           What city would you like to host in?
           <Location />
         
+        {
+        /* shindig = {
+            date: this.datePicker,
+            time: this.timePicker,
+            location: this.location
+        } */
+        /* postNewShindig(shindig);
+        getShindigId().then().redirect(shindigEventPage); */
+        }
         </Dialog>
         
       </div>
