@@ -9,5 +9,14 @@ import registerServiceWorker from './registerServiceWorker';
 // // http://stackoverflow.com/a/34015469/988941
 // injectTapEventPlugin();
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import { makeMainRoutes } from './routes';
+
+const routes = makeMainRoutes();
+
+ReactDOM.render(
+  routes,
+  document.getElementById('root')
+);
+
+// ReactDOM.render(<App />, document.getElementById('root'));
+// registerServiceWorker();

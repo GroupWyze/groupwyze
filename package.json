@@ -16,11 +16,13 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
+    "install-peers": "^1.0.2",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
+    "history": "^4.7.2",
     "material-ui": "^0.19.2",
     "mysql2": "^1.4.2",
     "react-router-dom": "^4.2.2",
