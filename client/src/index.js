@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
@@ -9,12 +9,14 @@ import registerServiceWorker from './registerServiceWorker';
 // // http://stackoverflow.com/a/34015469/988941
 // injectTapEventPlugin();
 
-import { makeMainRoutes } from './routes';
+// import { makeMainRoutes } from './routes';
+import AppRoutes from './routes';
 
-const routes = makeMainRoutes();
+// const routes = makeMainRoutes();
 
 ReactDOM.render(
-  routes,
+  // routes,
+  <AppRoutes />,
   document.getElementById('root')
 );
 

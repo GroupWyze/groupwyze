@@ -9,10 +9,10 @@ class Home extends Component {
     this.props.auth.login();
   }
   render() {
-    // const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
     return (
       <div className="container">
-        {/* {
+        {
           isAuthenticated() && (
               <h4>
                 You are logged in!
@@ -32,7 +32,7 @@ class Home extends Component {
                 {' '}to continue.
               </h4>
             )
-        } */}
+        }
       </div>
     );
   }

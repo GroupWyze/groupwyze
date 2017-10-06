@@ -21,12 +21,13 @@ class App extends Component {
     return (
       <MuiThemeProvider>
           <div>
-            <Navbar 
-              login={this.login.bind(this)} 
-              logout={this.logout.bind(this)}
-              isAuthenticated={isAuthenticated}
-            />
-            <Jumbotron />
+          <Navbar 
+          login={this.login.bind(this)} 
+          logout={this.logout.bind(this)}
+          isAuthenticated={isAuthenticated}
+          />
+          {/* <Jumbotron /> */}
+          {this.props.children}
           </div>
       </MuiThemeProvider>
     );
