@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const app = express();
+var moment = require("moment");
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
