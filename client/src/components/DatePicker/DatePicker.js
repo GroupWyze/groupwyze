@@ -11,25 +11,26 @@ export default class DatePicker2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          controlledDate: null,
+          date: null,
         };
-      }
-      
-      handleCalendarChange = (event, date) => {
-        console.log(this);
-        this.setState({
-          controlledDate: date,
-        });
-      };    
-
-      render() {
-        return (
-          <DatePicker
-            hintText="Choose your event date"
-            value={this.state.controlledDate}
-            onChange={this.handleCalendarChange}
-            mode="landscape"
-          />
-        );
-      }
     }
+      
+    handleCalendarChanges = (event, value) => {
+        this.setState({
+            date: value,
+        });
+        console.log(this.state);
+
+    };    
+
+    render() {
+        return (
+            <DatePicker
+                hintText="Choose your event date"
+                value={this.state.date}
+                onChange={this.handleCalendarChanges}
+                mode="landscape"
+            />
+        );
+    }
+}

@@ -42,25 +42,16 @@ export default class ShindigForm extends React.Component {
     this.setState({open: false});
   };
 
-  
 
-    // handleCalendarChange = value => {
-    //   //function to adjust state to capture date picked by user.
-    //   console.log(value);
-    //   this.setState({
-    //     date: value,
-    //   });      
-    // }
-
-    handleCalendarChange = (event, date) => {
-      this.setState({
-        date: date,
-      });
-      eventInfo = {
-        date: this.state.date,
-      }
-      console.log(eventInfo);
-    };    
+  handleCalendarChange = (event, date) => {
+    this.setState({
+      date: date,
+    });
+    eventInfo = {
+      date: this.state.date,
+    }
+    console.log(eventInfo);
+  };    
 
 
 
@@ -79,8 +70,6 @@ export default class ShindigForm extends React.Component {
       />,
     ];
 
-    
-
     return (
       <div>
         <RaisedButton label="Create a new Event!" onClick={this.handleOpen} />
@@ -97,7 +86,8 @@ export default class ShindigForm extends React.Component {
           What date would you like?
 
         <DatePicker 
-          onDismiss={this.handleCalendarChange}
+          value={this.state.date}
+          onChange={this.handleCalendarChange}
         />
           <br />
           What time would you like to begin?
