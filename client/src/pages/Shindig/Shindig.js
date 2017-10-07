@@ -10,7 +10,7 @@ class Shindig extends Component {
 
         let pathname = window.location.pathname;
         let id = pathname.substring(pathname.indexOf("shindig/") + 8);
-        
+
         this.state = {
             shindigId: id,
             name: "",
@@ -72,13 +72,14 @@ class Shindig extends Component {
                         collapseTime={this.state.collapseTime}
                     />
                 </div>
-                 <div className="col s12 m8 l9">
+                <div className="col s12 m8 l9">
                     <Categories
-                        onCategoriesChange={handleCategoryChange} 
+                        onCategoriesChange={handleCategoryChange}
                         categories={this.state.categories}
                         shindigId={this.state.shindigId}
+                        location={this.state.address ? this.state.address + ", " + this.state.city + ", " + this.state.zip : this.state.city}
                     />
-                </div> 
+                </div>
             </div>
         );
     }

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ActionHome from 'material-ui/svg-icons/action/home';
+import {red500} from 'material-ui/styles/colors';
 
 class Login extends Component {
   static muiName = 'FlatButton';
@@ -24,8 +25,8 @@ const Logged = (props) => (
     iconButtonElement={
       <IconButton><MoreVertIcon /></IconButton>
     }
-    targetOrigin={{horizontal: 'right', vertical: 'top'}}
-    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+    targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+    anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
     <MenuItem primaryText="My Page" />
     <MenuItem primaryText="Create Shindig" />
@@ -45,7 +46,7 @@ class Navbar extends Component {
   };
 
   handleChange = (event, logged) => {
-    this.setState({logged: logged});
+    this.setState({ logged: logged });
   };
 
   render() {
@@ -55,13 +56,9 @@ class Navbar extends Component {
           title="GroupWyze"
           iconElementLeft={<IconButton><ActionHome /></IconButton>}
           iconElementRight={this.state.logged ? <Logged /> : <Login />}
-        />
-        <Toggle
-          label="Logged"
-          defaultToggled={true}
-          onToggle={this.handleChange}
-          labelPosition="right"
-          style={{margin: 20}}
+          style={{
+            backgroundColor: red500,
+          }}
         />
       </div>
     );
