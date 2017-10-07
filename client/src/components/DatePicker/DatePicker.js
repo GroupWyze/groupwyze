@@ -9,8 +9,8 @@ import DatePicker from 'material-ui/DatePicker';
 
 const DatePicker2 = () => (
   <div>
-    <DatePicker hintText="Choose your event date" mode="landscape" />
-
+    <DatePicker hintText="Choose your event date" mode="landscape" value="this.state.value" />
+    
   </div>
 );
 

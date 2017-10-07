@@ -23,14 +23,7 @@ class UserPage extends Component {
                 <div className="col xgrid-xs-6 s12 m4 l3 grey lighten-5">
                     <h3>Column 2</h3>
                 </div>
-                <div>
-                    <h3> Column 3  </h3>
-                </div>
-
-                <div className="col s12 m8 l9">
-                    {/* insert calendar */}
-                    <h3>Column 4 </h3>
-                </div>
+                
             </div>
         );
     }

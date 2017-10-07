@@ -72,7 +72,6 @@ export default class ShindigForm extends React.Component {
 
         <DatePicker 
           onChange={this.handleCalendarChange}
-
         />
           <br />
           What time would you like to begin?
