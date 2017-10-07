@@ -59,7 +59,7 @@ class Routes extends Component{
             <div>
               <Route path="/" render={(props) => <App auth={auth} {...props} />} />
               <Switch>
-                <Route exact path="/" render={(props) => } />
+                <Route exact path="/" render={(props) => <UserPage />} />
                 <Route path="/callback" render={(props) => (<Callback auth={auth} {...props} />)}/>
                 <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
                 <Route path="/shindig"/>
