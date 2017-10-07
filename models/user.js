@@ -9,12 +9,12 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     User.associate = function (models) {
-        // Associating User with shindigs
+        User.hasMany(models.ShindigUser, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
 
-        User.belongsToMany(models.Shindig, {through: models.ShindigUser});
-
-    };
-
-
+    }
     return User;
 };

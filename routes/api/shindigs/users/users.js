@@ -14,11 +14,19 @@ router.route('/')
         db.ShindigUser.findAll({
             where: {
                 ShindigId: req.body.ShindigId
-            }
+
+            },
+            include: [{
+                model: db.User,
+                where: {
+                    id: db.Sequelize.col('ShindigUser.UserId'),
+                }
+            }]
         }).then(function (dbShindigUser) {
             res.json(dbShindigUser);
         });
     });
+
 
 router.route('/:user_id')
     .all(function (req, res, next) {
@@ -27,7 +35,7 @@ router.route('/:user_id')
 
         // adding ShindigId to the request body
         req.body.ShindigId = req.baseUrl.substring(req.baseUrl.indexOf("shindig/") + 8, req.baseUrl.indexOf("/user"));
-        
+
         // add User id to the request body
         req.body.UserId = req.params.user_id;
         next();
