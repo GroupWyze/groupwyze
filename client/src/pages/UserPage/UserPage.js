@@ -20,10 +20,10 @@ class UserPage extends Component {
 
         return (
             <div className="row">
-                <div className="col s10 offset-s1">
+                <div className="col s6 offset-s3">
                     <h1>Welcome to Groupwyze!</h1>
                 </div>
-                <div className="col s4 offset-s4">
+                <div className="col s6 offset-s3">
                     <h3>Click button below to get started</h3>
                 </div>
                 <div className="col s2 offset-s5">
