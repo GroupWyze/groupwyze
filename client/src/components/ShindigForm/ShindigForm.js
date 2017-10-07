@@ -48,6 +48,13 @@ export default class ShindigForm extends React.Component {
       location: "",
     }
 
+    handleCalendarChange = () => {
+      //function to adjust state to capture date picked by user.
+      this.state({
+        date: "",
+      });
+    }
+
     return (
       <div>
         <RaisedButton label="Create a new Event!" onClick={this.handleOpen} />
@@ -64,7 +71,8 @@ export default class ShindigForm extends React.Component {
           What date would you like?
 
         <DatePicker 
-          
+          onChange={this.handleCalendarChange}
+
         />
           <br />
           What time would you like to begin?
@@ -73,7 +81,10 @@ export default class ShindigForm extends React.Component {
           <br />
           What city would you like to host in?
 
-        <Location />
+        <Location 
+          value={this.state.textFieldValue} 
+          onChange={this._handleTextFieldChange}
+        />
           <br />
 
         </Dialog>
