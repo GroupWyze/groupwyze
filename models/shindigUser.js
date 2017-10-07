@@ -18,6 +18,7 @@ module.exports = function (sequelize, DataTypes) {
     ShindigUser.associate = function (models) {
         // Associating User with votes
         ShindigUser.hasMany(models.Vote);
+        ShindigUser.belongsTo(models.User);
     };
 
     return ShindigUser;

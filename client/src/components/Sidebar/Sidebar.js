@@ -1,26 +1,26 @@
 import React from 'react';
-import { List} from 'material-ui/List';
+import { List } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import moment from 'moment';
+import ShindigUserList from "../ShindigUserList";
 import './Sidebar.css';
 
 const Sidebar = (props) => (
-    <div className="">
+    <div>
         <List>
-             <h5>{props.name}</h5> 
-            {/* <ListItem className="shindig-name" disabled="true" primaryText={props.name} /> */}
-
+            <h5>{props.name}</h5>
             <blockquote>
                 {props.description}
             </blockquote>
             <h6 className="sidebar-header">Date</h6>
-            <p>{props.shindigTime}</p>
+            <p>{moment(props.shindigTime).format("MMMM Do YYYY, h:mm a")}</p>
             <h6 className="sidebar-header">Voting Ends</h6>
-            <p>{props.collapseTime}</p>
+            <p>{moment(props.collapseTime).format("MMMM Do YYYY, h:mm a")}</p>
             <h6 className="sidebar-header">Location</h6>
             <p>{props.location}</p>
-             {/* <ListItem disabled="true" primaryText={"Date: " + props.shindigTime} /> 
-            <ListItem disabled="true" primaryText={"Voting Ends: " + props.collapseTime} />
-            <ListItem disabled="true" primaryText={"Location: " + props.location} /> */}
         </List>
+        <Divider style={{ marginTop: "10px" }} />
+        <ShindigUserList shindigId={props.shindigId}/>
     </div>
 );
 

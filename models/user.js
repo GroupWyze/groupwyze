@@ -8,13 +8,5 @@ module.exports = function (sequelize, DataTypes) {
         imageUrl: { type: DataTypes.STRING, allowNull: true }
     });
 
-    User.associate = function (models) {
-        // Associating User with shindigs
-
-        User.belongsToMany(models.Shindig, {through: models.ShindigUser});
-
-    };
-
-
     return User;
 };
