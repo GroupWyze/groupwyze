@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
+// import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import {red500} from 'material-ui/styles/colors';
@@ -30,7 +30,7 @@ const Logged = (props) => (
   >
     <MenuItem primaryText="My Page" />
     <MenuItem primaryText="Create Shindig" />
-    <MenuItem primaryText="Sign out" />
+    <MenuItem primaryText="Sign out" onClick={()=>props.logout()} />
   </IconMenu>
 );
 
@@ -42,7 +42,7 @@ Logged.muiName = 'IconMenu';
  */
 class Navbar extends Component {
   state = {
-    logged: true,
+    logged: this.props.isAuthenticated(),
   };
 
   handleChange = (event, logged) => {
@@ -55,7 +55,8 @@ class Navbar extends Component {
         <AppBar
           title="GroupWyze"
           iconElementLeft={<IconButton><ActionHome /></IconButton>}
-          iconElementRight={this.state.logged ? <Logged /> : <Login />}
+          iconElementRight={this.state.logged ? 
+            <Logged logout={this.props.logout}/> : <Login onClick={()=>this.props.login()}/>}
           style={{
             backgroundColor: red500,
           }}
