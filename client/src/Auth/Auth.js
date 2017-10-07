@@ -73,7 +73,7 @@ export default class Auth {
     this.lock.on('authorization_error', (err) => {
       console.log(err);
       alert(`Error: ${err.error}. Check the console for further details.`);
-      history.replace('/home');
+      history.replace('/user');
     });
   }
 
@@ -98,7 +98,7 @@ export default class Auth {
     this.userProfile = null;
 
     // navigate to the home route
-    history.replace('/home');
+    history.replace('/user');
   }
 
   isAuthenticated() {
