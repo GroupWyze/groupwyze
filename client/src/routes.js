@@ -4,7 +4,7 @@ import App from './App';
 import Home from './pages/Home/Home';
 import Callback from './pages/Callback/Callback';
 import Navbar from "./components/Navbar";
-import Navbar from "./pages/UserPage";
+import UserPage from "./pages/UserPage";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Auth from './Auth/Auth';
 import history from './history';
