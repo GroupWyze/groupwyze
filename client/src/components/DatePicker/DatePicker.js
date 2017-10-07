@@ -10,25 +10,31 @@ import DatePicker from 'material-ui/DatePicker';
 export default class DatePicker2 extends React.Component {
     constructor(props) {
         super(props);
+        this.handleCalendarChange = this.handleCalendarChange.bind(this)
+        
         this.state = {
           date: null,
         };
     }
       
-    handleCalendarChanges = (event, value) => {
+    handleCalendarChange = (event, value) => {
+        
         this.setState({
             date: value,
         });
+
         console.log(this.state);
 
     };    
 
+    
+    
     render() {
         return (
             <DatePicker
                 hintText="Choose your event date"
                 value={this.state.date}
-                onChange={this.handleCalendarChanges}
+                onChange={this.handleCalendarChange}
                 mode="landscape"
             />
         );
