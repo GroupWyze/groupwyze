@@ -3,6 +3,7 @@ import { List } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import moment from 'moment';
 import ShindigUserList from "../ShindigUserList";
+import InviteUsers from "../InviteUsers";
 import './Sidebar.css';
 
 const Sidebar = (props) => (
@@ -21,6 +22,8 @@ const Sidebar = (props) => (
         </List>
         <Divider style={{ marginTop: "10px" }} />
         <ShindigUserList shindigId={props.shindigId}/>
+        <Divider style={{ marginTop: "10px" }} />
+        <InviteUsers shindigId={props.shindigId}/>
     </div>
 );
 
