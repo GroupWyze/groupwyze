@@ -53,13 +53,13 @@ class App extends Component {
     return (
      
         <div>
-          <UserPage />
+          
           <Loader auth={this.props.auth} getUser={this.getUser}/>
           {/* {JSON.stringify(profile, null, 2)} */}
-          <Route exact path="/user/:userId" userProfile={profile} 
+          <Route exact path="/user/" userProfile={profile} 
           render={(props) => (
             !isAuthenticated() ? (
-              <Redirect to="/home" />
+              <Redirect to="/user" />
             ) : (
               <UserPage profile={this.props.userProfile} {...props} />
             )
@@ -67,7 +67,7 @@ class App extends Component {
           <Route exact path="/user" userProfile={this.props.profile} 
           render={(props) => (
             !isAuthenticated() ? (
-              <Redirect to="/home" />
+              <Redirect to="/user" />
             ) : (
               <UserPage profile={this.props.userProfile} {...props} />
             )
@@ -75,7 +75,7 @@ class App extends Component {
           <Route exact path="/shindig/:shindigId" userProfile={this.props.profile} 
           render={(props) => (
             !isAuthenticated() ? (
-              <Redirect to="/home" />
+              <Redirect to="/user" />
             ) : (
               <Shindig profile={this.props.userProfile} {...props} />
             )
@@ -83,7 +83,7 @@ class App extends Component {
           <Route exact path="/shindig" userProfile={this.props.profile} 
           render={(props) => (
             !isAuthenticated() ? (
-              <Redirect to="/home" />
+              <Redirect to="/user" />
             ) : (
               <Shindig profile={this.props.userProfile} {...props} />
             )
