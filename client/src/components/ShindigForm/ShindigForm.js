@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import DatePicker from '../DatePicker';
+import DatePicker from 'material-ui/DatePicker';
 import Location from '../Location';
 import API from "../../utils/API";
-import TimePicker2 from '../TimePicker';
+import TimePicker2 from 'material-ui/TimePicker';
 
 
 /**
@@ -14,97 +14,104 @@ import TimePicker2 from '../TimePicker';
  *
  * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
-let eventInfo = {
-  date: "",
-  time: "",
-  location: "",
-}
 
-export default class ShindigForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        location: "",
-        date: "",
-        time: ""
-    };
-  }
-  
-  state = {
-    open: false,
-  };
-
-  handleOpen = () => {
-    this.setState({open: true});
-  };
-
-  handleClose = () => {
-    this.setState({open: false});
-  };
-
-
-  handleCalendarChange = (event, date) => {
-    this.setState({
-      date: date,
-    });
-    eventInfo = {
-      date: this.state.date,
+export default class ShindigForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            location: "",
+            date: "",
+            time: "",
+            open: false,
+            user_id: "user3000test"
+        };
     }
-    console.log(eventInfo);
-  };    
+
+    handleOpen = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+        setTimeout(console.log("here is final state: ",this.state), 1000);
+    };
 
 
+    handleCalendarChange = (event, selectedDate) => {
+        this.setState({
+            date: selectedDate
+        });
+    };
 
-  render() {
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onClick={this.handleClose}
-      />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onClick={this.handleClose}
-      />,
-    ];
+    handleTimeChange = (event, selectedTime) => {
+      this.setState({
+          time: selectedTime
+      });
+  };
 
-    return (
-      <div>
-        <RaisedButton label="Create a new Event!" onClick={this.handleOpen} />
-        <Dialog
-          title="New Event:"
-          actions={actions}
-          modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-        >
-          {/* The actions in this window were passed in as an array of React objects. */}
+    handleLocationChange = (event, value) => {
+      this.setState({
+        location: value
+      });
+  };
 
-          <br />
-          What date would you like?
 
-        <DatePicker 
-          value={this.state.date}
-          onChange={() => this.handleCalendarChange}
-        />
-          <br />
-          What time would you like to begin?
+    render() {
+        const actions = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onClick={this.handleClose}
+            />,
+            <FlatButton
+                label="Submit"
+                primary={true}
+                keyboardFocused={true}
+                onClick={this.handleClose}
+            />,
+        ];
 
-        <TimePicker2 />
-          <br />
-          What city would you like to host in?
+        return (
+            <div>
+                <RaisedButton label="Create a new Event!" onClick={this.handleOpen} />
+                <Dialog
+                    title="New Event:"
+                    actions={actions}
+                    modal={false}
+                    open={this.state.open}
+                    onRequestClose={this.handleClose}
+                >
+                    {/* The actions in this window were passed in as an array of React objects. */}
 
-        <Location 
-          value={this.state.textFieldValue} 
-          onChange={this._handleTextFieldChange}
-        />
-          <br />
+                    <br />
+                    <div>What date would you like?</div>
 
-        </Dialog>
+                    <DatePicker
+                        value={this.state.date}
+                        onChange={this.handleCalendarChange}
+                    />
+                    <br />
+                    <div>What time would you like to begin?</div>
 
-      </div>
-    );
-  }
+                    <TimePicker2 
+                    value={this.state.time}
+                    onChange={this.handleTimeChange}
+
+                    />
+                    <br />
+                    <div>What city would you like to host in?</div>
+                     <Location
+                        id="value"
+                        hintText=""
+
+                        value={this.state.location}
+                        onChange={this.handleLocationChange}
+                    /> 
+                    <br />
+
+                </Dialog>
+
+            </div>
+        );
+    }
 }

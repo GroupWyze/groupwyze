@@ -1,13 +1,36 @@
 import React from 'react';
 import TimePicker from 'material-ui/TimePicker';
 
-const TimePicker2 = () => (
-  <div>
-    <TimePicker
-      hintText="Choose your event time"
+export default class TimePicker2 extends React.Component {
+  constructor(props) {
+      super(props);
+      this.handleTimeChange = this.handleTimeChange.bind(this)
+      
+      this.state = {
+        time: null,
+      };
+  }
     
-    />
-  </div>
-);
+  handleCalendarChange = (event, value) => {
+      
+      this.setState({
+          time: value,
+      });
 
-export default TimePicker2;
+      console.log(this.state);
+
+  };    
+
+  
+  
+  render() {
+      return (
+          <TimePicker
+              hintText="Choose your event time"
+              value={this.state.date}
+              onChange={this.handleCalendarChange}
+              mode="landscape"
+          />
+      );
+  }
+}
