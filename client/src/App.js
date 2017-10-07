@@ -53,6 +53,7 @@ class App extends Component {
     return (
      
         <div>
+          <UserPage />
           <Loader auth={this.props.auth} getUser={this.getUser}/>
           {/* {JSON.stringify(profile, null, 2)} */}
           <Route exact path="/user/:userId" userProfile={profile} 
