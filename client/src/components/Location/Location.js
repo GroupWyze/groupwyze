@@ -7,16 +7,15 @@ export default class Location extends React.Component {
       this.handleLocationChange = this.handleLocationChange.bind(this)
       
       this.state = {
-        location: ""
+        location: "San Francisco"
       };
   }
     
   handleLocationChange = (event, value) => {
-      
       this.setState({
-        location: value
+        location: value,
       });
-      // console.log(this.state);
+      console.log(this.state);
   };    
 
 
@@ -26,7 +25,7 @@ export default class Location extends React.Component {
       <div>
         <TextField
           name='location'
-          id='value'
+          id='location'
           value={this.state.value}
           onChange={this.handleLocationChange}
           floatingLabelText='City Desired'

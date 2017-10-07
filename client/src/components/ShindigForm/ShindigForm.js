@@ -6,7 +6,7 @@ import DatePicker from 'material-ui/DatePicker';
 import Location from '../Location';
 import API from "../../utils/API";
 import TimePicker2 from 'material-ui/TimePicker';
-
+var moment = require('moment');
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -19,7 +19,7 @@ export default class ShindigForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            location: "",
+            city: "San Francisco",
             date: "",
             time: "",
             open: false,
@@ -33,7 +33,30 @@ export default class ShindigForm extends Component {
 
     handleClose = () => {
         this.setState({ open: false });
-        setTimeout(console.log("here is final state: ",this.state), 1000);
+        setTimeout(console.log("here is final state: ",this.state), 3000);
+
+        {
+          let date = this.state.date;
+          date = moment(date).format('L');
+
+          console.log('the date: ',date);
+          
+          let time = this.state.time;
+          time = moment(time).format('LT');
+          console.log('time: ',time);
+
+          let dateTime = moment(date + ' ' + time, 'MM/DD/YYYY HH:mm');
+
+          console.log("final date time: ", dateTime);
+
+          let newEvent = {
+            
+          }
+
+          API.createShindig()
+
+        }
+
     };
 
 
@@ -51,7 +74,7 @@ export default class ShindigForm extends Component {
 
     handleLocationChange = (event, value) => {
       this.setState({
-        location: value
+        city: value
       });
   };
 
@@ -94,8 +117,8 @@ export default class ShindigForm extends Component {
                     <div>What time would you like to begin?</div>
 
                     <TimePicker2 
-                    value={this.state.time}
-                    onChange={this.handleTimeChange}
+                      value={this.state.time}
+                      onChange={this.handleTimeChange}
 
                     />
                     <br />
