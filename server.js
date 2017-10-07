@@ -5,6 +5,7 @@ const db = require("./models");
 var bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3001;
 const app = express();
+var moment = require("moment");
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

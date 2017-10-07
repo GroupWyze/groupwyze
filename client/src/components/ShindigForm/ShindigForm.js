@@ -2,105 +2,83 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import DatePicker from 'material-ui/DatePicker';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import TimePicker from '../TimePicker';
-import Divider from 'material-ui/Divider';
-import TextField from 'material-ui/TextField';
+import DatePicker from '../DatePicker';
 import Location from '../Location';
 import API from "../../utils/API";
+import TimePicker2 from '../TimePicker';
+
 
 /**
- * Dialogs can be nested. This example opens a Date Picker from within a Dialog.
+ * Dialog with action buttons. The actions are passed in as an array of React objects,
+ * in this example [FlatButtons](/#/components/flat-button).
+ *
+ * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
-
-let shindig = {
-    date: "",
-    time: "",
-    location: ""
-}
-
 export default class ShindigForm extends React.Component {
-  constructor() {
-      super();
-    //   state ({
-    //     open: false,
-    //     user_id: "",
-    //     date: "",
-    //     time: "",
-    //     location: ""
-    //   })
-  }
+  state = {
+    open: false,
+  };
 
   handleOpen = () => {
     this.setState({open: true});
   };
 
-  handleClose = (e) => {
-    e.preventDefault();
-    this.setState({
-        open: false,
-        // user_id: {user_id},
-        // date: {date},
-        // time: {time},
-        // location: {location}
-    });
+  handleClose = () => {
+    this.setState({open: false});
   };
 
   render() {
     const actions = [
       <FlatButton
-        label="Ok"
+        label="Cancel"
+        primary={true}
+        onClick={this.handleClose}
+      />,
+      <FlatButton
+        label="Submit"
         primary={true}
         keyboardFocused={true}
         onClick={this.handleClose}
       />,
     ];
 
-
-    function postNewShindig(shindig) {
-        //send post here to database
-        // API.createShindig.(shindig);
+    let eventInfo = {
+      date: "",
+      time: "",
+      location: "",
     }
 
     return (
       <div>
-        <RaisedButton label="Create an Event!" onClick={this.handleOpen} />
+        <RaisedButton label="Create a new Event!" onClick={this.handleOpen} />
         <Dialog
-          title="Start a new Event! Tell us when and where to begin."
+          title="New Event Form"
           actions={actions}
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
+          {/* The actions in this window were passed in as an array of React objects. */}
+
+          <br />
           What date would you like?
-          <DatePicker hintText="Date Picker" />
-          <br />
 
+        <DatePicker 
+          
+        />
+          <br />
           What time would you like to begin?
-          <br />
 
-          <TimePicker />
+        <TimePicker2 />
           <br />
           What city would you like to host in?
-          <Location />
-        
-        {
-        /* shindig = {
-            date: this.datePicker,
-            time: this.timePicker,
-            location: this.location
-        } 
-        
-        
-        postNewShindig(shindig);
-        getShindigId().then().redirect(shindigEventPage); */
-        }
+
+        <Location />
+          <br />
+
         </Dialog>
-        
+
       </div>
     );
   }
 }
-
