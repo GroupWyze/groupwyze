@@ -23,8 +23,13 @@ module.exports = function (sequelize, DataTypes) {
             }
         });
 
+        Shindig.hasMany(models.ShindigUser, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
         // Associating Shindig with User
-        Shindig.belongsToMany(models.User, {through: models.ShindigUser});
+        // Shindig.belongsToMany(models.User, {through: models.ShindigUser});
     };
 
     return Shindig;
