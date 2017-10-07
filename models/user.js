@@ -8,13 +8,5 @@ module.exports = function (sequelize, DataTypes) {
         imageUrl: { type: DataTypes.STRING, allowNull: true }
     });
 
-    User.associate = function (models) {
-        User.hasMany(models.ShindigUser, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-
-    }
     return User;
 };
