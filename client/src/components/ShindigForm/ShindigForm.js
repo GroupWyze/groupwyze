@@ -14,7 +14,22 @@ import TimePicker2 from '../TimePicker';
  *
  * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
+let eventInfo = {
+  date: "",
+  time: "",
+  location: "",
+}
+
 export default class ShindigForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        location: "",
+        date: "",
+        time: ""
+    };
+  }
+  
   state = {
     open: false,
   };
@@ -26,6 +41,28 @@ export default class ShindigForm extends React.Component {
   handleClose = () => {
     this.setState({open: false});
   };
+
+  
+
+    // handleCalendarChange = value => {
+    //   //function to adjust state to capture date picked by user.
+    //   console.log(value);
+    //   this.setState({
+    //     date: value,
+    //   });      
+    // }
+
+    handleCalendarChange = (event, date) => {
+      this.setState({
+        date: date,
+      });
+      eventInfo = {
+        date: this.state.date,
+      }
+      console.log(eventInfo);
+    };    
+
+
 
   render() {
     const actions = [
@@ -42,24 +79,13 @@ export default class ShindigForm extends React.Component {
       />,
     ];
 
-    let eventInfo = {
-      date: "",
-      time: "",
-      location: "",
-    }
-
-    handleCalendarChange = () => {
-      //function to adjust state to capture date picked by user.
-      this.state({
-        date: "",
-      });
-    }
+    
 
     return (
       <div>
         <RaisedButton label="Create a new Event!" onClick={this.handleOpen} />
         <Dialog
-          title="New Event Form"
+          title="New Event:"
           actions={actions}
           modal={false}
           open={this.state.open}
@@ -71,7 +97,7 @@ export default class ShindigForm extends React.Component {
           What date would you like?
 
         <DatePicker 
-          onChange={this.handleCalendarChange}
+          onDismiss={this.handleCalendarChange}
         />
           <br />
           What time would you like to begin?

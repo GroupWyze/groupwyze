@@ -7,11 +7,29 @@ import DatePicker from 'material-ui/DatePicker';
  * To display the year selection first, set the `openToYearSelection` property to `true`.
  */
 
-const DatePicker2 = () => (
-  <div>
-    <DatePicker hintText="Choose your event date" mode="landscape" value="this.state.value" />
-    
-  </div>
-);
+export default class DatePicker2 extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          controlledDate: null,
+        };
+      }
+      
+      handleCalendarChange = (event, date) => {
+        console.log(this);
+        this.setState({
+          controlledDate: date,
+        });
+      };    
 
-export default DatePicker2;
+      render() {
+        return (
+          <DatePicker
+            hintText="Choose your event date"
+            value={this.state.controlledDate}
+            onChange={this.handleCalendarChange}
+            mode="landscape"
+          />
+        );
+      }
+    }
