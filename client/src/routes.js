@@ -4,7 +4,6 @@ import App from './App';
 import Home from './pages/Home/Home';
 import Callback from './pages/Callback/Callback';
 import Navbar from "./components/Navbar";
-import UserPage from "./pages/UserPage";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Auth from './Auth/Auth';
 import history from './history';
@@ -59,7 +58,6 @@ class Routes extends Component{
             <div>
               <Route path="/" render={(props) => <App auth={auth} {...props} />} />
               <Switch>
-                <Route exact path="/" render={(props) => <UserPage />} />
                 <Route path="/callback" render={(props) => (<Callback auth={auth} {...props} />)}/>
                 <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
                 <Route path="/shindig"/>
