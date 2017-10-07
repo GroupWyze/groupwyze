@@ -1,6 +1,7 @@
 import React from 'react';
 import { List} from 'material-ui/List';
 import './Sidebar.css';
+import moment from 'moment';
 
 const Sidebar = (props) => (
     <div className="">
@@ -12,9 +13,9 @@ const Sidebar = (props) => (
                 {props.description}
             </blockquote>
             <h6 className="sidebar-header">Date</h6>
-            <p>{props.shindigTime}</p>
+            <p>{moment(props.shindigTime).format("MMMM Do YYYY, h:mm a")}</p>
             <h6 className="sidebar-header">Voting Ends</h6>
-            <p>{props.collapseTime}</p>
+            <p>{moment(props.collapseTime).format("MMMM Do YYYY, h:mm a")}</p>
             <h6 className="sidebar-header">Location</h6>
             <p>{props.location}</p>
              {/* <ListItem disabled="true" primaryText={"Date: " + props.shindigTime} /> 
