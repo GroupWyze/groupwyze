@@ -23,9 +23,8 @@ class UserPage extends Component {
                 <div className="col s6 offset-s3">
                     <h1>Welcome to Groupwyze!</h1>
                 </div>
-                <div className="col s6 offset-s3">
-                    <h3>Click button below to get started</h3>
-                </div>
+                <br />
+                <br />
                 <div className="col s2 offset-s5">
                     <ShindigForm />
                 </div>
