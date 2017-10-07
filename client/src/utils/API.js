@@ -141,8 +141,8 @@ export default {
     // ===================================================
 
     // creates a user
-    createUser: function (userData) {
-        return axios.post("/api/user", userData);
+    createUser: function (name, imageUrl, email, authId) {
+        return axios.post("/api/user", name, imageUrl, email, authId);
     },
 
     // Gets all users
