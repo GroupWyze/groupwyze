@@ -2,7 +2,8 @@ const express = require("express");
 const path = require("path");
 const routes = require("./routes");
 const db = require("./models");
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
+const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -16,6 +17,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+// Adding cors https://www.npmjs.com/package/cors
+app.use(cors())
 
 // Add routes, both API and view
 app.use(routes);

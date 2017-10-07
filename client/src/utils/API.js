@@ -75,7 +75,7 @@ export default {
     // ===================================================
     // ===================================================
 
-        // creates a item for the given category 
+    // creates a item for the given category 
     createItem: function (shindigId, categoryId, itemData) {
         return axios.post("/api/shindig/" + shindigId + "/category/" + categoryId + "/item", itemData);
     },
@@ -110,7 +110,7 @@ export default {
     // ===================================================
     // ===================================================
 
-        // creates a vote for a given item 
+    // creates a vote for a given item 
     createVote: function (shindigId, categoryId, itemId) {
         return axios.post("/api/shindig/" + shindigId + "/category/" + categoryId + "/item/" + itemId + "/vote");
     },
@@ -203,6 +203,35 @@ export default {
     // Deletes the user with the given shindigId and userId
     deleteShindigUser: function (shindigId, userId) {
         return axios.delete("/api/shindig/" + shindigId + "/user/" + userId);
+    },
+
+
+    // ===================================================
+    // ===================================================
+
+
+
+    // YELP ROUTES
+    // ===================================================
+    // ===================================================
+
+    //GET https://api.yelp.com/v3/businesses/search
+
+    // creates a user for a shindig
+    searchYelp: function (location, term) {
+        console.log("location: " + location);
+        console.log("term: " + term);
+        return axios.get('/api/yelp', {
+            params: {
+                term: term,
+                location: location
+            }
+        })
+    },
+
+    yelpBusiness: function (yelpId) {
+        console.log("yelpId: " + yelpId);
+        return axios.get('/api/yelp/'+ yelpId)
     }
 
 };
