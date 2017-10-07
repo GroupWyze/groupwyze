@@ -7,7 +7,7 @@ import UserPage from "./pages/UserPage.js";
 import API from "./utils/API"
 
 import './App.css';
-import UserPage from './pages/Userpage.js';
+
 
 class App extends Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import Sidebar from "../components/Sidebar";
 // import Categories from "../components/Categories";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 // import UserSidebar from "../components/UserSidebar";
 // import ShindigForm from "../components/ShindigForm";
 

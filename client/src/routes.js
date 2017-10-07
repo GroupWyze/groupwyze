@@ -17,7 +17,7 @@ export const makeMainRoutes = () => {
   return (
     <Router history={history} component={App}>
       <div>
-          {/* what will the exact do here */}
+         
           <Route path="/" render={(props) => <App auth={auth} {...props} />} />
           
           <Switch>
