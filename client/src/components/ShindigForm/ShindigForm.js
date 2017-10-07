@@ -50,10 +50,13 @@ export default class ShindigForm extends Component {
           console.log("final date time: ", dateTime);
 
           let newEvent = {
-            
+            user_id: this.state.user_id,
+            city: this.state.city,
+            shindigTime: dateTime,
+            name: "hangout"
           }
 
-          API.createShindig()
+          API.createShindig(newEvent).then()
 
         }
 
