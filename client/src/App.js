@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect, Route, Switch} from 'react-router-dom';
-
 import Loader from "./components/Loader"
 import Shindig from "./pages/Shindig";
 import UserPage from "./pages/UserPage.js";
@@ -91,6 +90,7 @@ class App extends Component {
              
         </div>
       
+
     );
   }
 }

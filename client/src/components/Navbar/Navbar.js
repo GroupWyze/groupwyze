@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 // import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ActionHome from 'material-ui/svg-icons/action/home';
+import {red500} from 'material-ui/styles/colors';
 
 class Login extends Component {
   static muiName = 'FlatButton';
@@ -24,9 +25,10 @@ const Logged = (props) => (
     iconButtonElement={
       <IconButton><MoreVertIcon /></IconButton>
     }
-    targetOrigin={{horizontal: 'right', vertical: 'top'}}
-    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+    targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+    anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
+
     <MenuItem primaryText="My Page" onClick={()=>props.goToUser()}/>
     <MenuItem primaryText="Create Shindig" onClick={()=>props.goToShindig()}/>
     <MenuItem primaryText="Sign out" onClick={()=>props.logout()} />
@@ -42,13 +44,11 @@ Logged.muiName = 'IconMenu';
 class Navbar extends Component {
   
   state = {
+
     logged: this.props.isAuthenticated()
 
   };
 
-  handleStateChange(){
-
-  }
 
   render() {
     return (
@@ -61,6 +61,7 @@ class Navbar extends Component {
                     goToUser={this.props.goToUser}
                     goToShindig={this.props.goToShindig}
             /> : <Login onClick={()=>this.props.login()} />}
+
         />
       </div>
     );

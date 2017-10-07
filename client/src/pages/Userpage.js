@@ -20,7 +20,6 @@ class UserPage extends Component {
 
         return (
             <div >
-                
             </div>
         );
     }

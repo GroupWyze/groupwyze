@@ -75,6 +75,3 @@ class Routes extends Component{
 }
 
 export default Routes;
-// <Route exact path="/" component={Shindig} />
-// <Route exact path="/shindig/:shindigId" component={Shindig} />
-// <Route component={NoMatch} />

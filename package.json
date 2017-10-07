@@ -20,7 +20,9 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "history": "^4.7.2",
     "material-ui": "^0.19.2",
