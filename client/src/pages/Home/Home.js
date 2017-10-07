@@ -1,5 +1,7 @@
 
 import React, { Component } from 'react';
+import Jumbotron from "../../components/Jumbotron";
+import App from "../../App"
 
 // TODO: YOU GOTTA CHANGE THIS TO THE LANDING PAGE OR TO SOMETHING
 // Ideas: make it into a copy of the App page if its Authenticated or not. 
@@ -11,7 +13,9 @@ class Home extends Component {
   render() {
     // const { isAuthenticated } = this.props.auth;
     return (
-      <div className="container">
+      <div>
+        <Jumbotron />
+        
         {/* {
           isAuthenticated() && (
               <h4>
