@@ -127,6 +127,13 @@ export default class Auth {
     return accessToken;
   }
 
+  hasAccessToken() {
+    const accessToken = localStorage.getItem('access_token') ;
+    if (!accessToken){
+      return false;
+    } else { return true;}
+  }
+
     
 
 

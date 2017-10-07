@@ -40,12 +40,15 @@ Logged.muiName = 'IconMenu';
  * to render different components depending on the application state.
  */
 class Navbar extends Component {
+  
   state = {
-    logged: this.props.isAuthenticated(),
+    logged: this.props.isAuthenticated()
 
   };
 
+  handleStateChange(){
 
+  }
 
   render() {
     return (
