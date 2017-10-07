@@ -3,12 +3,12 @@ import React, { Component } from "react";
 // import Categories from "../components/Categories";
 import Navbar from "../../components/Navbar";
 // import UserSidebar from "../components/UserSidebar";
-// import ShindigForm from "../components/ShindigForm";
+import ShindigForm from "../../components/ShindigForm";
 
 
 class UserPage extends Component {
 
-    
+
     constructor(props) {
         super(props);
         const profile = this.props.userProfile
@@ -19,8 +19,16 @@ class UserPage extends Component {
         /*const userId = this.user_id */
 
         return (
-            <div >
-                boop
+            <div className="row">
+                <div className="col s10 offset-s1">
+                    <h1>Welcome to Groupwyze!</h1>
+                </div>
+                <div className="col s4 offset-s4">
+                    <h3>Click button below to get started</h3>
+                </div>
+                <div className="col s2 offset-s5">
+                    <ShindigForm />
+                </div>
             </div>
         );
     }
@@ -30,11 +38,11 @@ class UserPage extends Component {
 export default UserPage;
 
 
-// What do we want the user to see on their page? 
+// What do we want the user to see on their page?
     // prior events,
     // how social they've been
     // who else they've been to events with (an event counter)
-    // 
+    //
 
 // So I need to figure out how to:
     // call the user database
