@@ -6,11 +6,12 @@ const Categories = props => {
 
     const categoryItems = props.categories.map(cat => {
         return (
-            <div key={cat.name} className="col m6">
+            <div key={cat.name} className="col l6">
                 <Category
                     shindigId={props.shindigId}
                     categoryData={cat}
                     onCategoriesChange={props.onCategoriesChange}
+                    location={props.location}
                 />
             </div>
         );
@@ -18,7 +19,7 @@ const Categories = props => {
 
     return (
         <div>
-            <div className="row">
+            <div className="row" style={{marginTop: "10px"}}>
                 {categoryItems}
             </div>
             <AddCategory shindigId={props.shindigId} onCategoriesChange={props.onCategoriesChange} />

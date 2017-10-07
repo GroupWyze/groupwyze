@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Jumbotron from "./components/Jumbotron";
 
 import './App.css';
+import UserPage from './pages/Userpage.js';
 
 class App extends Component {
 
@@ -34,10 +35,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-// <Switch>
-// <Route exact path="/" component={Shindig} />
-// <Route exact path="/shindig/:shindigId" component={Shindig} />
-// <Route component={NoMatch} />
-// </Switch>

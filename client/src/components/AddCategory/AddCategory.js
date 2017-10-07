@@ -4,6 +4,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import { red500 } from 'material-ui/styles/colors';
 import API from "../../utils/API";
 import "./AddCategory.css";
 
@@ -17,6 +18,7 @@ const styles = {
     buttonStyle: {
         marginRight: 20,
     },
+    
     checkbox: {
         marginBottom: 16,
     }
@@ -114,8 +116,12 @@ class AddCategory extends Component {
         } else {
             return (
                 <div>
-                    <FloatingActionButton onClick={(e) => this.toggleModal(e)} style={styles.floatingActionButtonStyle}>
-                        <ContentAdd />
+                    <FloatingActionButton
+                        onClick={(e) => this.toggleModal(e)}
+                        backgroundColor={red500}
+                        style={styles.floatingActionButtonStyle}
+                    >
+                        <ContentAdd/>
                     </FloatingActionButton>
                 </div>
             );

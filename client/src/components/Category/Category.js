@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import CategorySettings from '../CategorySettings';
 import ItemList from '../ItemList';
 import AddItem from '../AddItem';
+import YelpSearch from '../YelpSearch';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
+import { red500 } from 'material-ui/styles/colors';
 import Snackbar from 'material-ui/Snackbar';
 import Setting from 'material-ui/svg-icons/action/settings';
 import Search from 'material-ui/svg-icons/action/search';
@@ -15,8 +17,12 @@ import API from "../../utils/API";
 const styles = {
     categoryCard: {
         marginBottom: "20px"
+    },
+    tab: {
+        backgroundColor: red500,
     }
 }
+
 
 class Category extends Component {
     constructor(props) {
@@ -28,7 +34,8 @@ class Category extends Component {
             items: [],
             votes: [],
             snackbarOpen: false,
-            snackbarMessage: ""
+            snackbarMessage: "",
+            businesses: []
         };
     }
 
@@ -55,13 +62,13 @@ class Category extends Component {
                     res.data.forEach(item => {
                         votePercentage.push({
                             itemId: item.ItemId,
-                            percent: Math.round((item.count/totalVoteCount)*100)
+                            percent: Math.round((item.count / totalVoteCount) * 100)
                         })
                     })
-                    this.setState({votes: votePercentage});
+                    this.setState({ votes: votePercentage });
                 })
                 .catch(err => console.log(err));
-        }, 5000);
+        }, 3000);
     }
 
 
@@ -133,14 +140,25 @@ class Category extends Component {
         });
     };
 
+    onYelpSearch = (e, term, location) => {
+        e.preventDefault();
+        API.searchYelp(term, location)
+            .then(res => {
+                this.setState({
+                    businesses: res.data
+                })
+                console.log(this.state.businesses)
+            });
+    }
+
     render() {
 
         return (
             <div>
                 <Card style={styles.categoryCard}>
                     <CardTitle title={this.props.categoryData.name} />
-                    <Tabs>
-                        <Tab icon={<ViewList />}>
+                    <Tabs >
+                        <Tab style={styles.tab} icon={<ViewList />}>
                             <CardText expandable={false}>
                                 <ItemList
                                     shindigId={this.state.shindigId}
@@ -151,7 +169,7 @@ class Category extends Component {
                                 />
                             </CardText>
                         </Tab>
-                        <Tab icon={<Add />} >
+                        <Tab style={styles.tab} icon={<Add />}>
                             <CardText expandable={false}>
                                 <AddItem
                                     shindigId={this.props.shindigId}
@@ -160,15 +178,20 @@ class Category extends Component {
                                 />
                             </CardText>
                         </Tab>
-                        <Tab display={this.props.categoryData.yelpEnabled} icon={<Search />} >
+                        <Tab style={styles.tab} display={this.props.categoryData.yelpEnabled} icon={<Search />}>
                             <CardText expandable={false}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                    </CardText>
+                                <YelpSearch
+                                    shindigId={this.props.shindigId}
+                                    categoryData={this.props.categoryData}
+                                    onItemAdd={this.loadItems}
+                                    handleYelpSearch={this.onYelpSearch}
+                                    location={this.props.location}
+                                    businesses={this.state.businesses}
+                                />
+
+                            </CardText>
                         </Tab>
-                        <Tab icon={<Setting />} >
+                        <Tab style={styles.tab} icon={<Setting />}>
                             <CardText expandable={false}>
                                 <CategorySettings
                                     shindigId={this.props.shindigId}
