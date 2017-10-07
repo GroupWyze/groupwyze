@@ -2,7 +2,7 @@
 
 ## A social App to create, coordinate and democratize your social events. 
 
-GroupWyze allows users to create an event, shindig, hangout, party, concert, happy hour, team building and general shenanigans on a single page. Friends, family, colleagues and acquaintences can vote on particular event details to democratize and maximize fun! User can then return to their history and review their past social calendars, see who's been their best party friend, and review their data. 
+GroupWyze allows users to create an event, shindig, hangout, party, concert, happy hour, team building and general shenanigans on a single page. Friends, family, colleagues and acquaintances can vote on particular event details to democratize and maximize fun! User can then return to their history and review their past social calendars, see who's been their best party friend, and review their data. 
 
 ## GroupWyze is built on the following technologies:
 <li>React</li>
