@@ -7,19 +7,17 @@ import Navbar from "../components/Navbar";
 
 
 class UserPage extends Component {
-
-    
     constructor(props) {
         super(props);
-        const profile = this.props.userProfile
     }
 
     render() {
-        const profile = this.props.userProfile
+
         /*const userId = this.user_id */
 
         return (
-            <div >
+            <div className="row">
+                
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import Auth0Lock from 'auth0-lock';
-// import auth0 from 'auth0-js';
+import auth0 from "auth0-js"
 // import { AUTH_CONFIG } from './auth0-variables';
 import history from '../history';
 
@@ -32,14 +32,18 @@ export default class Auth {
 
   });
 
-//   auth0 = new auth0.WebAuth({
-//     domain: 'groupwyze.auth0.com',
-//     clientID: 'h-db3TKF59gFCVMNPSxO02CmPvQHL9Nq',
-//     redirectUri: 'http://localhost:3000/callback',
-//     audience: `https://groupwyze.auth0.com/userinfo`,
-//     responseType: 'token id_token',
-//     scope: 'openid profile email'
-//   });
+
+  auth0 = new auth0.WebAuth({
+    domain: 'groupwyze.auth0.com',
+    clientID: 'h-db3TKF59gFCVMNPSxO02CmPvQHL9Nq',
+    redirectUri: 'http://localhost:3000/callback',
+    audience: `https://groupwyze.auth0.com/userinfo`,
+    responseType: 'token id_token',
+    scope: 'openid profile email'
+  });
+
+  userProfile;
+
 
   constructor() {
     this.handleAuthentication();
@@ -81,7 +85,8 @@ export default class Auth {
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
       // navigate to the home route
-      history.replace('/home');
+      history.replace('/user');
+
     }
   }
 
@@ -90,6 +95,8 @@ export default class Auth {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    this.userProfile = null;
+
     // navigate to the home route
     history.replace('/home');
   }
@@ -122,6 +129,14 @@ export default class Auth {
     }
     return accessToken;
   }
+
+  hasAccessToken() {
+    const accessToken = localStorage.getItem('access_token') ;
+    if (!accessToken){
+      return false;
+    } else { return true;}
+  }
+
 
     
 
