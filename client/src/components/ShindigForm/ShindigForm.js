@@ -57,7 +57,7 @@ export default class ShindigForm extends Component {
           }
 
           API.createShindig(newEvent).then(res => {
-              window.location.href = '/shindig'+res.data.id ;
+              window.location.href = '/shindig/'+res.data.id ;
           })
 
         }
