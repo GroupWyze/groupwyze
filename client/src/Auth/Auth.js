@@ -1,49 +1,10 @@
 import Auth0Lock from 'auth0-lock';
 import auth0 from "auth0-js"
-// import { AUTH_CONFIG } from './auth0-variables';
+import { AUTH_CONFIG } from './auth0-variables';
 import history from '../history';
 
 
 export default class Auth {
-  
-
-
-  lock = new Auth0Lock('FfGbfN2mOaonCe41rMxNObLHuL2Jij8D', 'groupwyze.auth0.com', {
-    oidcConformant: true,
-    autoclose: true,
-    auth: {
-      redirectUrl: 'https://groupwyze.herokuapp.com/callback', //'http://localhost:3000/callback', //
-      responseType: 'token id_token',
-      audience: `https://groupwyze.auth0.com/userinfo`,
-      params: {
-        scope: 'openid profile email'
-      }
-    },
-    defaultDatabaseConnection: 'Username-Password-Authentication',
-    theme: {
-        logo: './favicon.ico',
-        primaryColor: '#F44336',
-        labeledSubmitButton: false
-    },
-    socialButtonStyle: 'small',
-    languageDictionary: {
-        title: 'GroupWyze'
-    }
-
-  });
-
-
-  auth0 = new auth0.WebAuth({
-    domain: 'groupwyze.auth0.com',
-    clientID: 'h-db3TKF59gFCVMNPSxO02CmPvQHL9Nq',
-    redirectUri: 'http://localhost:3000/callback',
-    audience: `https://groupwyze.auth0.com/userinfo`,
-    responseType: 'token id_token',
-    scope: 'openid profile email'
-  });
-
-  userProfile;
-
 
   constructor() {
     this.handleAuthentication();
@@ -55,6 +16,43 @@ export default class Auth {
     this.getProfile = this.getProfile.bind(this);
   }
 
+  lock = new Auth0Lock('FfGbfN2mOaonCe41rMxNObLHuL2Jij8D', 'groupwyze.auth0.com', {
+    oidcConformant: true,
+    autoclose: true,
+    auth: {
+      redirectUrl: 'http://localhost:3000/callback', //'http://localhost:3000/callback', //
+      responseType: 'token id_token',
+      audience: `https://groupwyze.auth0.com/userinfo`,
+      params: {
+        scope: 'openid profile email'
+      }
+    },
+    defaultDatabaseConnection: 'Username-Password-Authentication',
+    theme: {
+      logo: './favicon.ico',
+      primaryColor: '#F44336',
+      labeledSubmitButton: false
+    },
+    socialButtonStyle: 'small',
+    languageDictionary: {
+      title: 'GroupWyze'
+    }
+  });
+
+
+  auth0 = new auth0.WebAuth({
+    domain: AUTH_CONFIG.domain,
+    clientID: AUTH_CONFIG.clientId,
+    redirectUri: AUTH_CONFIG.callbackUrl,
+    audience: `https://groupwyze.auth0.com/userinfo`,
+    responseType: 'token id_token',
+    scope: 'openid profile email'
+  });
+
+  userProfile;
+
+
+
 
   // Auth Lock Functions
   // Handles Signup and Log in. 
@@ -62,7 +60,7 @@ export default class Auth {
   login() {
     // Call the show method to display the widget.
     this.lock.show({
-        autoParseHash: true
+      autoParseHash: true
     });
   }
 
@@ -131,15 +129,11 @@ export default class Auth {
   }
 
   hasAccessToken() {
-    const accessToken = localStorage.getItem('access_token') ;
-    if (!accessToken){
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
       return false;
-    } else { return true;}
+    } else {
+      return true;
+    }
   }
-
-
-    
-
-
-
 }

@@ -7,16 +7,16 @@ import ArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
 import { fullWhite, red500 } from 'material-ui/styles/colors';
 import LinearProgress from 'material-ui/LinearProgress';
 import YelpIcon from '../../images/Yelp_trademark_RGB_outline.png';
-import YelpSmall0 from '../../images/yelpIcons/small/small_0.png';
-import YelpSmall1 from '../../images/yelpIcons/small/small_1.png';
-import YelpSmall1Half from '../../images/yelpIcons/small/small_1_half.png';
-import YelpSmall2 from '../../images/yelpIcons/small/small_2.png';
-import YelpSmall2Half from '../../images/yelpIcons/small/small_2_half.png';
-import YelpSmall3 from '../../images/yelpIcons/small/small_3.png';
-import YelpSmall3Half from '../../images/yelpIcons/small/small_3_half.png';
-import YelpSmall4 from '../../images/yelpIcons/small/small_4.png';
-import YelpSmall4Half from '../../images/yelpIcons/small/small_4_half.png';
-import YelpSmall5 from '../../images/yelpIcons/small/small_5.png';
+import YelpStar0 from '../../images/yelpIcons/regular/regular_0.png';
+import YelpStar1 from '../../images/yelpIcons/regular/regular_1.png';
+import YelpStar1Half from '../../images/yelpIcons/regular/regular_1_half.png';
+import YelpStar2 from '../../images/yelpIcons/regular/regular_2.png';
+import YelpStar2Half from '../../images/yelpIcons/regular/regular_2_half.png';
+import YelpStar3 from '../../images/yelpIcons/regular/regular_3.png';
+import YelpStar3Half from '../../images/yelpIcons/regular/regular_3_half.png';
+import YelpStar4 from '../../images/yelpIcons/regular/regular_4.png';
+import YelpStar4Half from '../../images/yelpIcons/regular/regular_4_half.png';
+import YelpStar5 from '../../images/yelpIcons/regular/regular_5.png';
 import API from "../../utils/API";
 
 const styles = {
@@ -58,7 +58,9 @@ class YelpItem extends Component {
         if (nextProps.votes !== this.props.votes) {
             this.props.votes.forEach(v => {
                 if (this.props.itemId === v.itemId) {
-                    this.setState({ votePercentage: v.percent });
+                    this.setState({
+                        votePercentage: v.percent
+                    });
                 }
             })
         }
@@ -68,117 +70,74 @@ class YelpItem extends Component {
     getYelpRatingImage = (rating) => {
         switch (rating) {
             case 0:
-                return YelpSmall0;
+                return YelpStar0;
                 break;
             case 1:
-                return YelpSmall1;
+                return YelpStar1;
                 break;
             case 1.5:
-                return YelpSmall1Half;
+                return YelpStar1Half;
                 break;
             case 2:
-                return YelpSmall2;
+                return YelpStar2;
                 break;
             case 2.5:
-                return YelpSmall2Half;
+                return YelpStar2Half;
                 break;
             case 3:
-                return YelpSmall3;
+                return YelpStar3;
                 break;
             case 3.5:
-                return YelpSmall3Half;
+                return YelpStar3Half;
                 break;
             case 4:
-                return YelpSmall4;
+                return YelpStar4;
                 break;
             case 4.5:
-                return YelpSmall4Half;
+                return YelpStar4Half;
                 break;
             case 5:
-                return YelpSmall5;
+                return YelpStar5;
                 break;
             default:
-                return YelpSmall0;
+                return YelpStar0;
         }
     }
 
-
-
     render() {
 
-        return (
-            <div key={this.props.itemId}>
-                <GridTile
-                    key={this.props.yelpId}
-                    style={{
-                        height: "80px"
-                    }}
-                >
-                    <div style={{
-                        marginBotton: "0px",
-                    }}>
-                        <div>
-                            <div className="row" style={{
-                                marginBotton: "15px",
-                            }}>
-                                <Avatar
-                                    onClick={(e) => this.props.handleAddVote(e, this.props.itemId)}
-                                    icon={<ArrowUpward
-                                        style={{
-                                            margin: "0"
-                                        }}
-                                    />}
-                                    color={fullWhite}
-                                    backgroundColor={red500}
-                                    size={30}
-                                    className="col s4"
-                                    style={{
-                                        height: "30px",
-                                        width: "30px",
-                                        padding: "5px",
-                                        position: "absolute",
-                                        left: "0px",
-                                        top: "0px"
-                                    }}
-                                />
-                                <h6 className="col s8 offset-s2" style={{ fontSize: "16px", padding: "0 0 0 10px" }}>{this.props.itemName}</h6>
-
-
-                            </div>
-                            <div className="row">
-                                <img className="col s4 offset-s2 yelpStars" src={this.getYelpRatingImage(this.state.rating)} />
-                                <b style={{ fontWeight: "bold" }} className="col s1 offset-s1">{this.state.price}</b>
-                                <a target="_blank" href={this.props.itemUrl}>
-                                    <img
-                                        className="col s3 offset-s1"
-                                        style={{
-                                            height: "40px",
-                                            width: "auto",
-                                            padding: "5px",
-                                            position: "absolute",
-                                            right: "0px",
-                                            bottom: "40px"
-                                        }}
-                                        src={YelpIcon} />
-                                </a>
-                            </div>
-                                <div className="col s8 offset-s2 noMargin">Based on {this.state.reviewCount} reviews</div>
-                        </div>
-                    </div>
-                </GridTile>
-                <LinearProgress
-                    mode="determinate"
-                    value={this.state.votePercentage}
-                    style={{
-                        height: "8px"
-                    }}
-                />
-                <Divider style={{marginTop: "10px"}}/>
-            </div >
-        );
+        return ( <div key={ this.props.itemId }>
+                   <GridTile key={ this.props.yelpId } style={ { height: "80px" } }>
+                     <div style={ { marginBotton: "0px", } }>
+                       <div>
+                         <div className="row" style={ { marginBotton: "15px", } }>
+                           <Avatar onClick={ (e) => this.props.handleAddVote(e, this.props.itemId) } icon={ < ArrowUpward style={ { margin: "0" } } /> } color={ fullWhite } backgroundColor={ red500 } size={ 30 } className="col s4"
+                             style={ { height: "30px", width: "30px", padding: "5px", position: "absolute", left: "0px", top: "0px" } } />
+                           <h6 className="col s8 offset-s2" style={ { fontSize: "16px", padding: "0 0 0 10px" } }>
+                                                                                                    { this.props.itemName }
+                                                                                                </h6>
+                         </div>
+                         <div className="row">
+                           < img className="col s4 offset-s2 yelpStars" src={ this.getYelpRatingImage(this.state.rating) } />
+                           <b style={ { fontWeight: "bold" } } className="col s1 offset-s1">
+                                                                                                                                                                                                               { this.state.price }
+                                                                                                                                                                                                               </b>
+                           <a target="_blank" href={ this.props.itemUrl }>
+                             <img className="col s3 offset-s1" style={ { height: "40px", width: "auto", padding: "5px", position: "absolute", right: "0px", bottom: "40px" } } src={ YelpIcon } />
+                           </a>
+                         </div>
+                         <div className="col s8 offset-s2 noMargin"> Based on
+                           { this.state.reviewCount } reviews
+                         </div>
+                       </div>
+                     </div>
+                   </GridTile>
+                   <LinearProgress mode="determinate" value={ this.state.votePercentage } style={ { height: "8px" } } />
+                   <Divider style={ { marginTop: "10px" } } />
+                 </div>
+            );
     }
 
 }
-
 
 export default YelpItem;

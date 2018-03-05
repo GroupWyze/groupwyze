@@ -3,10 +3,11 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
-import Location from '../Location';
+import TextField from 'material-ui/TextField';
 import API from "../../utils/API";
 import TimePicker2 from 'material-ui/TimePicker';
-var moment = require('moment');
+import moment from 'moment';
+
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -16,130 +17,116 @@ var moment = require('moment');
  */
 
 export default class ShindigForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            city: "San Francisco",
-            date: "",
-            time: "",
-            open: false,
-            user_id: "user3000test"
-        };
-    }
-
-    handleOpen = () => {
-        this.setState({ open: true });
+  constructor(props) {
+    super(props);
+    this.state = {
+      city: "",
+      date: "",
+      time: "",
+      open: false,
+      user_id: "user3000test",
+      location: ""
     };
+  }
 
-    handleClose = () => {
-        this.setState({ open: false });
-        setTimeout(console.log("here is final state: ",this.state), 3000);
+  getCity = (response) => {
+    let locationData = response.data.results[0];
+    return this.findDataInGeoCodeResponseByType(locationData, "locality");
+  }
 
-        {
-          let date = this.state.date;
-          date = moment(date).format('L');
+  getZip = (response) => {
+    let locationData = response.data.results[0];
+    return this.findDataInGeoCodeResponseByType(locationData, "postal_code");
+  }
 
-          console.log('the date: ',date);
-          
-          let time = this.state.time;
-          time = moment(time).format('LT');
-          console.log('time: ',time);
+  findDataInGeoCodeResponseByType = (locationData, type) => {
+    for (let i = 0; i < locationData.address_components.length; i++) {
+      if (locationData.address_components[i].types.includes(type)) {
+        return locationData.address_components[i].long_name;
+      }
+    }
+  }
 
-          let dateTime = moment(date + ' ' + time, 'MM/DD/YYYY HH:mm');
+  handleOpen = () => {
+    this.setState({
+      open: true
+    });
+  };
 
-          console.log("final date time: ", dateTime);
+  handleClose = () => {
+    this.setState({
+      open: false
+    });
+  };
 
+  handleSubmit = () => {
+    let date = moment(this.state.date).format('L');
+    let time = moment(this.state.time).format('LT');
+    let dateTime = moment(date + ' ' + time, 'MM/DD/YYYY HH:mm');
+
+    API.getGoogleGeocode(this.state.location)
+      .then(response => {
+        this.setState({
+          city: this.getCity(response),
+          time: time,
+          date: date,
+          open: false
+        }, () => {
           let newEvent = {
             user_id: this.state.user_id,
             city: this.state.city,
             shindigTime: dateTime,
-            name: "hangout"
+            name: "Hangout",
+            address: this.state.location,
+
           }
 
           API.createShindig(newEvent).then(res => {
-              window.location.href = '/shindig/'+res.data.id ;
+            window.location.href = '/shindig/' + res.data.id;
           })
-
-        }
-
-    };
-
-
-    handleCalendarChange = (event, selectedDate) => {
-        this.setState({
-            date: selectedDate
-        });
-    };
-
-    handleTimeChange = (event, selectedTime) => {
-      this.setState({
-          time: selectedTime
+        })
       });
   };
 
-    handleLocationChange = (event, value) => {
-      this.setState({
-        city: value
-      });
+  handleCalendarChange = (event, selectedDate) => {
+    this.setState({
+      date: selectedDate
+    });
   };
 
+  handleTimeChange = (event, selectedTime) => {
+    this.setState({
+      time: selectedTime
+    });
+  };
 
-    render() {
-        const actions = [
-            <FlatButton
-                label="Cancel"
-                primary={true}
-                onClick={this.handleClose}
-            />,
-            <FlatButton
-                label="Submit"
-                primary={true}
-                keyboardFocused={true}
-                onClick={this.handleClose}
-            />,
-        ];
+  handleLocationChange = (event, value) => {
+    this.setState({
+      location: value
+    });
+  };
 
-        return (
-            <div>
-                <RaisedButton label="Create a new Event!" onClick={this.handleOpen} />
-                <Dialog
-                    title="New Event:"
-                    actions={actions}
-                    modal={false}
-                    open={this.state.open}
-                    onRequestClose={this.handleClose}
-                >
-                    {/* The actions in this window were passed in as an array of React objects. */}
+  render() {
+    const actions = [< FlatButton label="Cancel" primary={ true } onClick={ this.handleClose } />, < FlatButton label="Submit" primary={ true } keyboardFocused={ false } onClick={ this.handleSubmit } />,
+    ];
 
-                    <br />
-                    <div>What date would you like?</div>
-
-                    <DatePicker
-                        value={this.state.date}
-                        onChange={this.handleCalendarChange}
-                    />
-                    <br />
-                    <div>What time would you like to begin?</div>
-
-                    <TimePicker2 
-                      value={this.state.time}
-                      onChange={this.handleTimeChange}
-
-                    />
-                    <br />
-                    <div>What city would you like to host in?</div>
-                     <Location
-                        id="value"
-                        hintText=""
-
-                        value={this.state.location}
-                        onChange={this.handleLocationChange}
-                    /> 
-                    <br />
-
-                </Dialog>
-
-            </div>
-        );
-    }
+    return (
+      <div>
+        <RaisedButton label="Create" onClick={ this.handleOpen } />
+        <Dialog actions={ actions } modal={ false } open={ this.state.open } onRequestClose={ this.handleClose }>
+          { /* The actions in this window were passed in as an array of React objects. */ }
+          <br />
+          <span>Select a Date</span>
+          <DatePicker value={ this.state.date } onChange={ this.handleCalendarChange } />
+          < br />
+          <span>Select a Time</span>
+          <TimePicker2 value={ this.state.time } onChange={ this.handleTimeChange } />
+          <br />
+          <span>Where will the event be hosted (i.e. city or address)?</span>
+          <TextField name='location' id='location' className='inactive' value={ this.state.location } onChange={ this.handleLocationChange } autoComplete='off' />
+          < br />
+        </Dialog>
+      </div>
+      );
+  }
 }

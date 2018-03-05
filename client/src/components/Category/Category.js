@@ -65,10 +65,12 @@ class Category extends Component {
                             percent: Math.round((item.count / totalVoteCount) * 100)
                         })
                     })
-                    this.setState({ votes: votePercentage });
+                    this.setState({
+                        votes: votePercentage
+                    });
                 })
                 .catch(err => console.log(err));
-        }, 3000);
+        }, 5000);
     }
 
 
@@ -119,11 +121,15 @@ class Category extends Component {
     }
 
     onNameChange = itemName => {
-        this.setState({ itemName });
+        this.setState({
+            itemName
+        });
     }
 
     onDescriptionChange = itemDescription => {
-        this.setState({ itemDescription });
+        this.setState({
+            itemDescription
+        });
     }
 
     handleOpenSnackbar = (message) => {
@@ -155,64 +161,38 @@ class Category extends Component {
 
         return (
             <div>
-                <Card style={styles.categoryCard}>
-                    <CardTitle title={this.props.categoryData.name} />
-                    <Tabs >
-                        <Tab style={styles.tab} icon={<ViewList />}>
-                            <CardText expandable={false}>
-                                <ItemList
-                                    shindigId={this.state.shindigId}
-                                    categoryId={this.state.categoryId}
-                                    items={this.state.items}
-                                    handleAddVote={this.handleAddVote}
-                                    votes={this.state.votes}
-                                />
-                            </CardText>
-                        </Tab>
-                        <Tab style={styles.tab} icon={<Add />}>
-                            <CardText expandable={false}>
-                                <AddItem
-                                    shindigId={this.props.shindigId}
-                                    categoryData={this.props.categoryData}
-                                    onItemAdd={this.loadItems}
-                                />
-                            </CardText>
-                        </Tab>
-                        <Tab style={styles.tab} display={this.props.categoryData.yelpEnabled} icon={<Search />}>
-                            <CardText expandable={false}>
-                                <YelpSearch
-                                    shindigId={this.props.shindigId}
-                                    categoryData={this.props.categoryData}
-                                    onItemAdd={this.loadItems}
-                                    handleYelpSearch={this.onYelpSearch}
-                                    location={this.props.location}
-                                    businesses={this.state.businesses}
-                                />
-
-                            </CardText>
-                        </Tab>
-                        <Tab style={styles.tab} icon={<Setting />}>
-                            <CardText expandable={false}>
-                                <CategorySettings
-                                    shindigId={this.props.shindigId}
-                                    categoryData={this.props.categoryData}
-                                    onCategoriesChange={this.props.onCategoriesChange}
-                                />
-                            </CardText>
-                        </Tab>
-
-                    </Tabs>
-
-                </Card>
-                <Snackbar
-                    open={this.state.snackbarOpen}
-                    message={this.state.snackbarMessage}
-                    autoHideDuration={4000}
-                    onRequestClose={this.handleRequestClose}
-                />
+              <Card style={ styles.categoryCard }>
+                <CardTitle title={ this.props.categoryData.name } />
+                <Tabs>
+                  <Tab style={ styles.tab } icon={ <ViewList /> }>
+                    <CardText expandable={ false }>
+                      <ItemList shindigId={ this.state.shindigId } categoryId={ this.state.categoryId } items={ this.state.items } handleAddVote={ this.handleAddVote } votes={ this.state.votes }
+                      />
+                    </CardText>
+                  </Tab>
+                  <Tab style={ styles.tab } icon={ <Add /> }>
+                    <CardText expandable={ false }>
+                      <AddItem shindigId={ this.props.shindigId } categoryData={ this.props.categoryData } onItemAdd={ this.loadItems } />
+                    </CardText>
+                  </Tab>
+                  <Tab style={ styles.tab } display={ this.props.categoryData.yelpEnabled } icon={ <Search /> }>
+                    <CardText expandable={ false }>
+                      <YelpSearch shindigId={ this.props.shindigId } categoryData={ this.props.categoryData } onItemAdd={ this.loadItems } handleYelpSearch={ this.onYelpSearch } location={ this.props.location }
+                        businesses={ this.state.businesses } />
+                    </CardText>
+                  </Tab>
+                  <Tab style={ styles.tab } icon={ <Setting /> }>
+                    <CardText expandable={ false }>
+                      <CategorySettings shindigId={ this.props.shindigId } categoryData={ this.props.categoryData } onCategoriesChange={ this.props.onCategoriesChange } />
+                    </CardText>
+                  </Tab>
+                </Tabs>
+              </Card>
+              <Snackbar open={ this.state.snackbarOpen } message={ this.state.snackbarMessage } autoHideDuration={ 4000 } onRequestClose={ this.handleRequestClose } />
             </div>
-        );
+            );
     };
-};
+}
+;
 
 export default Category;

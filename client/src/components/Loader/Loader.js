@@ -8,20 +8,12 @@ class Loader extends Component {
         if(!hasAccessToken()){
             return
         }
-
         this.props.getUser() 
-
     }
 
     render() {
         const profile = this.props.profile
-    
-        return (
-
-            <div>  
-            </div>
-            
-        );
+        return (<div/>);
     }
 }
 export default Loader;

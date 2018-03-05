@@ -51,7 +51,7 @@ class Routes extends Component{
             goToLand={this.goTo.bind(this, '')}
             goToCB={this.goTo.bind(this, 'callback')}
             goToShindig={this.goTo.bind(this,'shindig')}
-            goToHome={this.goTo.bind(this, 'home')}
+            goToHome={this.goTo.bind(this, '')}
           />
         
           <Router history={history}>

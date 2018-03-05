@@ -62,26 +62,15 @@ class Shindig extends Component {
 
         return (
             <div className="row">
-                <div className="col s12 m4 l3 grey lighten-5">
-                    <Sidebar
-                        name={this.state.name}
-                        description={this.state.description}
-                        shindigId={this.state.shindigId}
-                        location={this.state.address ? this.state.address + ", " + this.state.city + ", " + this.state.zip : this.state.city}
-                        shindigTime={this.state.shindigTime}
-                        collapseTime={this.state.collapseTime}
-                    />
-                </div>
-                <div className="col s12 m8 l9">
-                    <Categories
-                        onCategoriesChange={handleCategoryChange}
-                        categories={this.state.categories}
-                        shindigId={this.state.shindigId}
-                        location={this.state.address ? this.state.address + ", " + this.state.city + ", " + this.state.zip : this.state.city}
-                    />
-                </div>
+              <div className="col s12 m4 l3 grey lighten-5">
+                <Sidebar name={ this.state.name } description={ this.state.description } shindigId={ this.state.shindigId } location={ this.state.address ? this.state.address : this.state.city } shindigTime={ this.state.shindigTime }
+                  collapseTime={ this.state.collapseTime } />
+              </div>
+              <div className="col s12 m8 l9">
+                <Categories onCategoriesChange={ handleCategoryChange } categories={ this.state.categories } shindigId={ this.state.shindigId } location={ this.state.address ? this.state.address + ", " + this.state.city + ", " + this.state.zip : this.state.city } />
+              </div>
             </div>
-        );
+            );
     }
 }
 
