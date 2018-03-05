@@ -31,7 +31,7 @@ app.use(routes);
 
 // Send every request to the React app
 // Define any API routes before this runs
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
@@ -41,15 +41,15 @@ app.get("*", function(req, res) {
 // setting force settings for dev vs prod env
 let force;
 if (process.env.NODE_ENV === "production") {
-  force = true;
+  force = false;
 } else {
-  force = true;
+  force = false;
 }
 
 db.sequelize.sync({
   force: force
-}).then(function() {
-  app.listen(PORT, function() {
+}).then(function () {
+  app.listen(PORT, function () {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
 });

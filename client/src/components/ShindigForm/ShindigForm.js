@@ -116,13 +116,13 @@ export default class ShindigForm extends Component {
         <Dialog actions={ actions } modal={ false } open={ this.state.open } onRequestClose={ this.handleClose }>
           { /* The actions in this window were passed in as an array of React objects. */ }
           <br />
-          <span>Select a Date</span>
+          <h6>Select a Date</h6>
           <DatePicker value={ this.state.date } onChange={ this.handleCalendarChange } />
           < br />
-          <span>Select a Time</span>
+          <h6>Select a Time</h6>
           <TimePicker2 value={ this.state.time } onChange={ this.handleTimeChange } />
           <br />
-          <span>Where will the event be hosted (i.e. city or address)?</span>
+          <h6>Where will the event be hosted (i.e. city or address)?</h6>
           <TextField name='location' id='location' className='inactive' value={ this.state.location } onChange={ this.handleLocationChange } autoComplete='off' />
           < br />
         </Dialog>
