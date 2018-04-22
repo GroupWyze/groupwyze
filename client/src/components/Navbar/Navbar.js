@@ -15,17 +15,17 @@ class Login extends Component {
   render() {
     return (
       <FlatButton {...this.props} label="Login" />
-      );
+    );
   }
 }
 
 const Logged = (props) => (
-  <IconMenu {...props} iconButtonElement={ <IconButton>
-                                           <MoreVertIcon />
-                                         </IconButton> } targetOrigin={ { horizontal: 'right', vertical: 'top' } } anchorOrigin={ { horizontal: 'right', vertical: 'top' } }>
-    <MenuItem primaryText="My Page" onClick={ () => props.goToUser() } />
-    <MenuItem primaryText="Create Shindig" onClick={ () => props.goToShindig() } />
-    <MenuItem primaryText="Sign out" onClick={ () => props.logout() } />
+  <IconMenu {...props} iconButtonElement={<IconButton>
+    <MoreVertIcon />
+  </IconButton>} targetOrigin={{ horizontal: 'right', vertical: 'top' }} anchorOrigin={{ horizontal: 'right', vertical: 'top' }}>
+    <MenuItem primaryText="My Page" onClick={() => props.goTo('user')} />
+    <MenuItem primaryText="New Event" onClick={() => props.goTo('shindig')} />
+    <MenuItem primaryText="Sign out" onClick={() => props.logout()} />
   </IconMenu>
 );
 
@@ -47,24 +47,24 @@ class Navbar extends Component {
 
   getIconElementRight = () => {
     if (this.state.logged) {
-      return <Logged logout={ this.props.logout } goToUser={ this.props.goToUser } goToShindig={ this.props.goToShindig } />
+      return <Logged logout={this.props.logout} goToUser={this.props.goToUser} goToShindig={this.props.goToShindig} />
     } else {
-      return <Login onClick={ () => this.props.login() } style={ { backgroundColor: red500, } } />
+      return <Login onClick={() => this.props.login()} style={{ backgroundColor: red500, }} />
     }
   }
 
   getIconElementLeft = () => {
     return <IconButton>
-             <ActionHome onClick={ () => this.props.goToHome() } />
-           </IconButton>
+      <ActionHome onClick={() => this.props.goToHome()} />
+    </IconButton>
   }
 
   render() {
     return (
       <div>
-        <AppBar title="GroupWyze" iconElementLeft={ this.getIconElementLeft() } iconElementRight={ this.getIconElementRight() } />
+        <AppBar title="GroupWyze" iconElementLeft={this.getIconElementLeft()} iconElementRight={this.getIconElementRight()} />
       </div>
-      );
+    );
   }
 }
 
