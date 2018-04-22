@@ -9,6 +9,10 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import { red500 } from 'material-ui/styles/colors';
 
+const appBarStyle = {
+  fontFamily: "'Roboto Slab', serif"
+}
+
 class Login extends Component {
   static muiName = 'FlatButton';
 
@@ -62,7 +66,7 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <AppBar title="GroupWyze" iconElementLeft={this.getIconElementLeft()} iconElementRight={this.getIconElementRight()} />
+        <AppBar style={appBarStyle} title="GroupWyze" iconElementLeft={this.getIconElementLeft()} iconElementRight={this.getIconElementRight()} />
       </div>
     );
   }

@@ -9,7 +9,9 @@ const jumbotronStyle = {
   // backgroundImage: "url(" + Background + ")"
   background: "url(" + Background + ")",
   backgroundRepeat: "no-repeat",
-  backgroundSize: "cover"
+  backgroundSize: "cover",
+  borderRadius: 0,
+  margin: 0,
 }
 
 const imageStyle = {
@@ -38,7 +40,7 @@ class Jumbotron extends Component {
         {/* <img src={Background} style={{}} /> */}
         <div className="container">
           <h1 style={headerStyle}>Get your friends together</h1>
-          <p style={paragraphStyle}>Search. Brainstorm. Everyone gets a say.</p>
+          <p style={paragraphStyle}>Search. Brainstorm. Vote.</p>
         </div>
       </div>
     );
