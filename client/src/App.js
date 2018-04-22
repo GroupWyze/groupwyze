@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import Loader from "./components/Loader"
+import { BrowserRouter, Route } from 'react-router-dom';
 import Shindig from "./pages/Shindig";
 import UserPage from "./pages/UserPage";
 import Navbar from "./components/Navbar";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import history from './history';
-import API from "./utils/API"
 
 import './App.css';
 
@@ -33,7 +31,6 @@ class App extends Component {
   }
 
   getUser = () => {
-
     const { userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
       getProfile((err, profile) => {
@@ -78,7 +75,6 @@ class App extends Component {
             goTo={this.goTo}
           />
           {this.renderRoutes()}
-
         </div>
       </MuiThemeProvider>
     );
