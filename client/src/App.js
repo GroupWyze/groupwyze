@@ -60,7 +60,7 @@ class App extends Component {
             < Route exact path="/shindig" component={Shindig} />
             < Route exact path="/user/:userId" component={UserPage} />
             < Route exact path="/user" component={UserPage} />
-            < Route path="/" component={Home} />
+            < Route exact path="/" component={Home} />
           </div>
         </BrowserRouter>
       );
