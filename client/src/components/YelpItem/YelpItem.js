@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import { GridTile } from 'material-ui/GridList';
 import Divider from 'material-ui/Divider';
@@ -10,14 +9,14 @@ import YelpIcon from '../../images/Yelp_trademark_RGB_outline.png';
 import API from "../../utils/API";
 import YelpHelper from "../../utils/YelpHelper";
 
-const styles = {
-  noMargin: {
-    margin: "0"
-  },
-  yelpStars: {
-    paddingTop: "5px"
-  }
-}
+// const styles = {
+//   noMargin: {
+//     margin: "0"
+//   },
+//   yelpStars: {
+//     paddingTop: "5px"
+//   }
+// }
 
 class YelpItem extends Component {
 

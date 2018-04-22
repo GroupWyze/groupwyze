@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import API from "../../utils/API";
-
 
 class InviteUsers extends Component {
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Shindig from "./pages/Shindig";
 import UserPage from "./pages/UserPage";
+import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import history from './history';
@@ -53,14 +54,21 @@ class App extends Component {
       return (
         <BrowserRouter>
           <div>
+            < Route exact path="/shindig/:shindigId" component={Shindig} />
+            < Route exact path="/shindig" component={Shindig} />
             < Route exact path="/user/:userId" component={UserPage} />
-            < Route exact path="/user" component={UserPage} />} />
-            < Route exact path="/shindig/:shindigId" component={Shindig} />} />
-            < Route exact path="/shindig" component={Shindig} />} />
+            < Route exact path="/user" component={UserPage} />
           </div>
         </BrowserRouter>
-      )
+      );
     }
+    return (
+      <BrowserRouter>
+        <div>
+          < Route path="/" component={Home} />
+        </div>
+      </BrowserRouter>
+    );
   }
 
   render() {
