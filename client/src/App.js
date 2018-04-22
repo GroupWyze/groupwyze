@@ -51,6 +51,7 @@ class App extends Component {
     const { isAuthenticated } = this.props.auth
     const { profile } = this.state;
     const canView = isAuthenticated();
+    console.log(canView);
     if (canView) {
       return (
         <BrowserRouter>
