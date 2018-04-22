@@ -50,7 +50,9 @@ class App extends Component {
     const { props } = this;
     const { isAuthenticated } = this.props.auth
     const { profile } = this.state;
-    if (isAuthenticated()) {
+    const canView = isAuthenticated();
+    console.log(canView);
+    if (canView) {
       return (
         <BrowserRouter>
           <div>
@@ -58,6 +60,7 @@ class App extends Component {
             < Route exact path="/shindig" component={Shindig} />
             < Route exact path="/user/:userId" component={UserPage} />
             < Route exact path="/user" component={UserPage} />
+            < Route exact path="/" component={Home} />
           </div>
         </BrowserRouter>
       );

@@ -1,8 +1,11 @@
 {
-  "name": "mern",
+  "name": "groupwyze",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "GroupWyze",
   "main": "server.js",
+  "engines": {
+    "node": "7.5.0"
+  },
   "homepage": "https://groupwyze.herokuapp.com/",
   "scripts": {
     "server": "node server.js",
