@@ -8,13 +8,11 @@ node_modules
 client/node_modules
 
 
-
 # testing
 /coverage
 
 # production
-/client/build
-client/build
+/build
 
 # misc
 .DS_Store
