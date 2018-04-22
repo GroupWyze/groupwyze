@@ -138,7 +138,7 @@ class YelpSearchResults extends Component {
 							<div className="row" style={{ marginLeft: "0", marginRight: "0" }}>
 								<h5 className="col s12" style={{ color: "white", padding: "5px 0 0 10px" }}>{this.props.businessName}</h5>
 							</div>
-							<div className="row">
+							<div className="row" style={{ marginLeft: "0", marginRight: "0" }}>
 								<img className="col s3 " src={this.getYelpRatingImage(this.props.rating)} />
 								<b style={{ color: "white", fontWeight: "bold" }} className="col s1 offset-s1">{this.props.price}</b>
 								<a target="_blank" href={this.state.businessUrl}>
@@ -155,7 +155,7 @@ class YelpSearchResults extends Component {
 										src={YelpIcon} />
 								</a>
 							</div>
-							<div className="row" >
+							<div className="row" style={{ marginLeft: "0", marginRight: "0" }}>
 								<p style={{ color: "white" }} className="col s8 ">Based on {this.props.reviewCount} reviews</p>
 								<IconButton
 									style={{
