@@ -50,7 +50,8 @@ class App extends Component {
     const { props } = this;
     const { isAuthenticated } = this.props.auth
     const { profile } = this.state;
-    if (isAuthenticated()) {
+    const canView = isAuthenticated();
+    if (canView) {
       return (
         <BrowserRouter>
           <div>
