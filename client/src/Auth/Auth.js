@@ -20,7 +20,7 @@ export default class Auth {
     oidcConformant: true,
     autoclose: true,
     auth: {
-      redirectUrl: 'http://localhost:3000/callback', //'http://localhost:3000/callback', //
+      redirectUrl: AUTH_CONFIG.callbackUrl,
       responseType: 'token id_token',
       audience: `https://groupwyze.auth0.com/userinfo`,
       params: {
