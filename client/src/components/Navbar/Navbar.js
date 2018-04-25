@@ -10,7 +10,8 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import { red500 } from 'material-ui/styles/colors';
 
 const appBarStyle = {
-  fontFamily: "'Roboto Slab', serif"
+  fontFamily: "'Roboto Slab', serif",
+  backgroundColor: red500
 }
 
 class Login extends Component {
