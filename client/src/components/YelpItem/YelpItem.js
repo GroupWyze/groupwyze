@@ -105,8 +105,7 @@ class YelpItem extends Component {
                     src={YelpIcon} />
                 </a>
               </div>
-              <div className="col s8 offset-s2 noMargin"> Based on
-                {this.state.reviewCount} reviews</div>
+              <div className="col s8 offset-s2 noMargin"> Based on {this.state.reviewCount} reviews</div>
             </div>
           </div>
         </GridTile>
