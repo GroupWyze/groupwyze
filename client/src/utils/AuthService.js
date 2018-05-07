@@ -4,7 +4,7 @@ import auth0 from 'auth0-js';
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 
-const REDIRECT = 'http://localhost:3000/callback';
+const REDIRECT = 'https://groupwyze.herokuapp.com//callback';
 const SCOPE = 'read:all';
 const AUDIENCE = 'https://www.groupwyze.com';
 const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;
