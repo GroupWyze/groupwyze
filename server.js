@@ -7,6 +7,11 @@ const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const app = express();
 var moment = require("moment");
+require('dotenv').config()
+
+console.log("process env start");
+console.log(process.env);
+console.log("process env end");
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -24,7 +29,7 @@ app.use(bodyParser.json({
 }));
 
 // Adding cors https://www.npmjs.com/package/cors
-app.use(cors())
+app.use(cors());
 
 // Add routes, both API and view
 app.use(routes);

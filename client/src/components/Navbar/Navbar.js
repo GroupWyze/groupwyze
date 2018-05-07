@@ -4,10 +4,10 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-// import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import { red500 } from 'material-ui/styles/colors';
+import { login, logout, isLoggedIn } from '../../utils/AuthService';
 
 const appBarStyle = {
   fontFamily: "'Roboto Slab', serif",
@@ -25,12 +25,14 @@ class Login extends Component {
 }
 
 const Logged = (props) => (
-  <IconMenu {...props} iconButtonElement={<IconButton>
-    <MoreVertIcon />
-  </IconButton>} targetOrigin={{ horizontal: 'right', vertical: 'top' }} anchorOrigin={{ horizontal: 'right', vertical: 'top' }}>
-    <MenuItem primaryText="My Page" onClick={() => props.goTo('user')} />
-    <MenuItem primaryText="New Event" onClick={() => props.goTo('shindig')} />
-    <MenuItem primaryText="Sign out" onClick={() => props.logout()} />
+  <IconMenu
+    {...props}
+    iconButtonElement={<IconButton> <MoreVertIcon /></IconButton>}
+    targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+    anchorOrigin={{ horizontal: 'right', vertical: 'top' }}>
+    <MenuItem primaryText="My Page" />
+    <MenuItem primaryText="New Event" />
+    <MenuItem primaryText="Sign out" onClick={() => logout()} />
   </IconMenu>
 );
 
@@ -44,23 +46,19 @@ class Navbar extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      logged: this.props.isAuthenticated()
-    };
   }
 
   getIconElementRight = () => {
-    if (this.state.logged) {
-      return <Logged logout={this.props.logout} goToUser={this.props.goToUser} goToShindig={this.props.goToShindig} />
+    if (this.props.logged) {
+      return <Logged />
     } else {
-      return <Login onClick={() => this.props.login()} style={{ backgroundColor: red500, }} />
+      return <Login onClick={() => login()} style={{ backgroundColor: red500, }} />
     }
   }
 
   getIconElementLeft = () => {
     return <IconButton>
-      <ActionHome onClick={() => this.props.goToHome()} />
+      <ActionHome onClick={() => window.location.href = "/"} />
     </IconButton>
   }
 
