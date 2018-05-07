@@ -10,8 +10,6 @@ const AUDIENCE = 'https://www.groupwyze.com';
 const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;
 const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN;
 
-console.log(process.env);
-
 const auth = new auth0.WebAuth({
   clientID: 'i1S-wjl9zN1HCauULetDfAFCnx2japbI',
   domain: 'app78017293.auth0.com',
