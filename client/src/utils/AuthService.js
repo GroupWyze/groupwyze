@@ -7,10 +7,14 @@ const ACCESS_TOKEN_KEY = 'access_token';
 const REDIRECT = 'http://localhost:3000/callback';
 const SCOPE = 'read:all';
 const AUDIENCE = 'https://www.groupwyze.com';
+const CLIENT_ID = process.env.AUTH0_CLIENT_ID;
+const DOMAIN = process.env.AUTH0_DOMAIN;
+
+console.log(process.env);
 
 const auth = new auth0.WebAuth({
-  clientID: AUTH0_CLIENT_ID,
-  domain: AUTH0_DOMAIN,
+  clientID: 'i1S-wjl9zN1HCauULetDfAFCnx2japbI',
+  domain: 'app78017293.auth0.com',
   responseType: 'token id_token',
   redirectUri: REDIRECT,
   audience: AUDIENCE,
