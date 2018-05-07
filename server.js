@@ -24,7 +24,7 @@ app.use(bodyParser.json({
 }));
 
 // Adding cors https://www.npmjs.com/package/cors
-app.use(cors())
+app.use(cors());
 
 // Add routes, both API and view
 app.use(routes);
