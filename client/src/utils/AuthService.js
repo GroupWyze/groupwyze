@@ -7,8 +7,8 @@ const ACCESS_TOKEN_KEY = 'access_token';
 const REDIRECT = 'http://localhost:3000/callback';
 const SCOPE = 'read:all';
 const AUDIENCE = 'https://www.groupwyze.com';
-const CLIENT_ID = process.env.AUTH0_CLIENT_ID;
-const DOMAIN = process.env.AUTH0_DOMAIN;
+const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;
+const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN;
 
 console.log(process.env);
 
