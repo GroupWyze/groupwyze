@@ -25,8 +25,6 @@ const auth = new auth0.WebAuth({
   },
 });
 
-let userProfile;
-
 export function login() {
   auth.authorize();
 }
