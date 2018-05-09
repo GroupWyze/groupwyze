@@ -3,9 +3,11 @@ module.exports = function (sequelize, DataTypes) {
 
     let User = sequelize.define("User", {
         auth0Id: { type: DataTypes.STRING, allowNull: false },
-        firstName: { type: DataTypes.STRING, allowNull: false },
-        lastName: { type: DataTypes.STRING, allowNull: false },
+        firstName: { type: DataTypes.STRING, allowNull: true },
+        lastName: { type: DataTypes.STRING, allowNull: true },
+        nickname: { type: DataTypes.STRING, allowNull: true },
         email: { type: DataTypes.STRING, allowNull: false },
+        password: { type: DataTypes.STRING, allowNull: false },
         imageUrl: { type: DataTypes.STRING, allowNull: true }
     });
 
