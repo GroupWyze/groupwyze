@@ -29,7 +29,7 @@ router.route('/:user_id')
   .get(function (req, res, next) {
     db.User.findOne({
       where: {
-        id: req.params.user_id
+        auth0Id: req.params.user_id
       }
     }).then(function (dbUser) {
       res.json(dbUser);
@@ -40,12 +40,12 @@ router.route('/:user_id')
       req.body,
       {
         where: {
-          id: req.params.user_id
+          auth0Id: req.params.user_id
         }
       }).then(function (dbUser) {
         db.User.findOne({
           where: {
-            id: req.params.user_id
+            auth0Id: req.params.user_id
           }
         }).then(function (dbUser) {
           res.json(dbUser);
@@ -55,7 +55,7 @@ router.route('/:user_id')
   .delete(function (req, res, next) {
     db.User.destroy({
       where: {
-        id: req.params.user_id
+        auth0Id: req.params.user_id
       }
     }).then(function (dbUser) {
       res.json(dbUser);

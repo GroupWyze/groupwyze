@@ -6,17 +6,18 @@ const ACCESS_TOKEN_KEY = 'access_token';
 
 const REDIRECT = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/callback' : 'https://groupwyze.herokuapp.com/callback';
 const SCOPE = 'read:all';
+const SCOPE_PROFILE = 'openid profile';
 const AUDIENCE = 'https://www.groupwyze.com';
 const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;
 const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN;
 
 const auth = new auth0.WebAuth({
-  clientID: 'i1S-wjl9zN1HCauULetDfAFCnx2japbI',
-  domain: 'app78017293.auth0.com',
+  clientID: CLIENT_ID,
+  domain: DOMAIN,
   responseType: 'token id_token',
   redirectUri: REDIRECT,
   audience: AUDIENCE,
-  scope: SCOPE,
+  scope: SCOPE_PROFILE,
   theme: {
     logo: '../images/groupwyze_tiny.png',
     primaryColor: '#F44336',
@@ -92,4 +93,14 @@ function getTokenExpirationDate(encodedToken) {
 function isTokenExpired(token) {
   const expirationDate = getTokenExpirationDate(token);
   return expirationDate < new Date();
+}
+
+export function getProfile(cb) {
+  auth.client.userInfo(getAccessToken(), (err, profile) => {
+    if (err) {
+      console.log(err);
+      return null;
+    }
+    cb(err, profile);
+  });
 }
