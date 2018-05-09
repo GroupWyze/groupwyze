@@ -7,7 +7,8 @@ module.exports = function (sequelize, DataTypes) {
         nickname: { type: DataTypes.STRING, allowNull: true },
         email: { type: DataTypes.STRING, allowNull: false },
         password: { type: DataTypes.STRING, allowNull: false },
-        imageUrl: { type: DataTypes.STRING, allowNull: true }
+        imageUrl: { type: DataTypes.STRING, allowNull: true },
+        emailVerified: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false }
     });
 
     return User;
