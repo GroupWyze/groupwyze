@@ -246,7 +246,7 @@ export default {
 
     getGoogleGeocode: function (location) {
         console.log(location);
-        return axios.get(`${GOOGLE_MAP_GEOCODE_URL}?address=${location}&key=${process.env.GOOGLE_MAP_API_KEY}`);
+        return axios.get(`${GOOGLE_MAP_GEOCODE_URL}?address=${location}&key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`);
     }
 
 };
