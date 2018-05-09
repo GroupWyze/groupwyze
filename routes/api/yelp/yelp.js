@@ -17,7 +17,7 @@ router.route('/')
                 location: req.query.location
             },
             headers: {
-                Authorization: "Bearer LaMQ3ScIVzzTB_hjnUtFt7WrrJYwh-2ZbU5adBYbUUDIpNFhClGFdU6e-_j7Y0unMX48ZaPCPyaQt3IP6kDZm-jTaoeQzJ-NL6ikemAEALXeVZQtG4_QVx_uCVI_WXYx"
+                Authorization: YELP_AUTHORIZATION_HEADER
             }
         }
         )
@@ -40,7 +40,7 @@ router.route('/:yelp_id')
         console.log(req);
         axios.get('https://api.yelp.com/v3/businesses/' + req.params.yelp_id, {
             headers: {
-                Authorization: "Bearer LaMQ3ScIVzzTB_hjnUtFt7WrrJYwh-2ZbU5adBYbUUDIpNFhClGFdU6e-_j7Y0unMX48ZaPCPyaQt3IP6kDZm-jTaoeQzJ-NL6ikemAEALXeVZQtG4_QVx_uCVI_WXYx"
+                Authorization: YELP_AUTHORIZATION_HEADER
             }
         }
         )
