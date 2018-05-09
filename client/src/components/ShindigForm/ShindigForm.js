@@ -66,21 +66,23 @@ export default class ShindigForm extends Component {
 
     API.getGoogleGeocode(this.state.location)
       .then(response => {
+        let city = this.getCity(response);
+        let zip = this.getZip(response);
+
         this.setState({
-          city: this.getCity(response),
+          city,
           time: time,
           date: date,
-          zip: this.getZip(response),
+          zip,
           open: false
         }, () => {
           let newEvent = {
             user_id: this.state.user_id,
-            city: this.state.city,
+            city,
             shindigTime: dateTime,
-            name: "Hangout",
+            name: "Super Fun Extravaganza",
             address: this.state.location,
-            zip: this.state.zip
-
+            zip
           }
 
           API.createShindig(newEvent).then(res => {
