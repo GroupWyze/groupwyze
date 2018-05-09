@@ -1,36 +1,41 @@
 import React, { Component } from "react";
-// import Sidebar from "../components/Sidebar";
-// import Categories from "../components/Categories";
-import Navbar from "../../components/Navbar";
-// import UserSidebar from "../components/UserSidebar";
 import ShindigForm from "../../components/ShindigForm";
+import { getProfile } from "../../utils/AuthService";
 
 
 class UserPage extends Component {
 
+	constructor(props) {
+		super(props);
 
-    constructor(props) {
-        super(props);
-        const profile = this.props.userProfile
-    }
+		this.state = {
+			profile: null
+		}
+	}
 
-    render() {
-        const profile = this.props.userProfile
-        /*const userId = this.user_id */
+	componentDidMount() {
+		getProfile((err, profile) => {
+			this.setState({ profile });
+		});
+	}
 
-        return (
-            <div className="row">
-                <div className="col s6 offset-s3">
-                    <h1>Welcome to Groupwyze!</h1>
-                </div>
-                <br />
-                <br />
-                <div className="col s2 offset-s5">
-                    <ShindigForm />
-                </div>
-            </div>
-        );
-    }
+	getFirstName = () => {
+		const { profile } = this.state;
+
+	}
+
+	render() {
+		const { profile } = this.state;
+		console.log(profile);
+		return (
+			<div className="row">
+				<div className="col s2 offset-s5">
+					<ShindigForm />
+					{profile && <div>Hey, {profile.nickname}!</div>}
+				</div>
+			</div>
+		);
+	}
 }
 
 
