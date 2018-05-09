@@ -42,9 +42,9 @@ app.get("*", function (req, res) {
 // setting force settings for dev vs prod env
 let force;
 if (process.env.NODE_ENV === "production") {
-  force = false;
+  force = true;
 } else {
-  force = false;
+  force = true;
 }
 
 db.sequelize.sync({
