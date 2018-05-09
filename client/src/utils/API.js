@@ -227,8 +227,8 @@ export default {
             params: {
                 term: term,
                 location: location
-            }
-        }, DEFAULT_HEADER)
+            }, DEFAULT_HEADER
+        })
     },
 
     yelpBusiness: function (yelpId) {
