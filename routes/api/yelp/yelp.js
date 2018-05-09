@@ -38,7 +38,7 @@ router.route('/:yelp_id')
     })
     .get(function (req, res, next) {
         console.log(req);
-        axios.get('https://api.yelp.com/v3/businesses/' + req.params.yelp_id, {
+        axios.get(`https://api.yelp.com/v3/businesses/${req.params.yelp_id}`, {
             headers: {
                 Authorization: YELP_AUTHORIZATION_HEADER
             }

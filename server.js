@@ -24,8 +24,13 @@ app.use(bodyParser.json({
   type: "application/vnd.api+json"
 }));
 
+const corsOptions = {
+  origin: ["https://groupwyze.herokuapp.com/", "http://localhost:3001", "http://localhost:3000"],
+  optionsSuccessStatus: 200
+}
+
 // Adding cors https://www.npmjs.com/package/cors
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Add routes, both API and view
 app.use(routes);
