@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import API from "../../utils/API";
+import { getCity, getZip } from "../../utils/GoogleMapsHelper";
 import TimePicker2 from 'material-ui/TimePicker';
 import moment from 'moment';
 
@@ -30,24 +31,6 @@ export default class ShindigForm extends Component {
     };
   }
 
-  getCity = (response) => {
-    let locationData = response.data.results[0];
-    return this.findDataInGeoCodeResponseByType(locationData, "locality");
-  }
-
-  getZip = (response) => {
-    let locationData = response.data.results[0];
-    return this.findDataInGeoCodeResponseByType(locationData, "postal_code");
-  }
-
-  findDataInGeoCodeResponseByType = (locationData, type) => {
-    for (let i = 0; i < locationData.address_components.length; i++) {
-      if (locationData.address_components[i].types.includes(type)) {
-        return locationData.address_components[i].long_name;
-      }
-    }
-  }
-
   handleOpen = () => {
     this.setState({
       open: true
@@ -68,9 +51,8 @@ export default class ShindigForm extends Component {
 
     API.getGoogleGeocode(this.state.location)
       .then(response => {
-        console.log(response);
-        let city = this.getCity(response);
-        let zip = this.getZip(response);
+        let city = getCity(response);
+        let zip = getZip(response);
 
         this.setState({
           city,

@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Shindig from "./pages/Shindig";
 import UserPage from "./pages/UserPage";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Callback from "./components/Callback";
-import { isLoggedIn, getIdToken } from "./utils/AuthService";
+import { isLoggedIn } from "./utils/AuthService";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import './App.css';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      profile: {}
-    };
-  }
+  //   this.state = {
+  //     profile: {}
+  //   };
+  // }
 
   renderRoutes = () => {
-    const { props } = this;
-    const { profile } = this.state;
+    // const { props } = this;
+    // const { profile } = this.state;
 
     return (
       <BrowserRouter>

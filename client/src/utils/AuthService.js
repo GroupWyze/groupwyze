@@ -1,11 +1,11 @@
 import decode from 'jwt-decode';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import auth0 from 'auth0-js';
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 
 const REDIRECT = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/callback' : 'https://groupwyze.herokuapp.com/callback';
-const SCOPE = 'read:all';
+// const SCOPE = 'read:all';
 const SCOPE_PROFILE = 'openid profile';
 const AUDIENCE = 'https://www.groupwyze.com';
 const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;

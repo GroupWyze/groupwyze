@@ -19,11 +19,6 @@ class UserPage extends Component {
 		});
 	}
 
-	getFirstName = () => {
-		const { profile } = this.state;
-
-	}
-
 	render() {
 		const { profile } = this.state;
 		console.log(profile);

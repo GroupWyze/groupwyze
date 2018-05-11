@@ -47,6 +47,8 @@ class InviteUsers extends Component {
                     <TextField
                         hintText="Email"
                         fullWidth={true}
+                        id="text-field-controlled"
+                        value={this.state.email}
                         onChange={this.handleChange}
                     />
                 </CardText>

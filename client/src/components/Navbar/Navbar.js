@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import { red500 } from 'material-ui/styles/colors';
-import { login, logout, isLoggedIn } from '../../utils/AuthService';
+import { login, logout } from '../../utils/AuthService';
 
 const appBarStyle = {
   fontFamily: "'Roboto Slab', serif",
@@ -43,10 +43,6 @@ Logged.muiName = 'IconMenu';
  * to render different components depending on the application state.
  */
 class Navbar extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   getIconElementRight = () => {
     if (this.props.logged) {
