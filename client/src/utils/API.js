@@ -3,6 +3,7 @@ import { getAccessToken } from "./AuthService";
 
 const GOOGLE_MAP_GEOCODE_URL = 'https://maps.googleapis.com/maps/api/geocode/json';
 const DEFAULT_HEADER = { headers: { Authorization: `Bearer ${getAccessToken()}` } };
+console.log(DEFAULT_HEADER);
 
 export default {
 
@@ -244,8 +245,9 @@ export default {
     // ===================================================
     // ===================================================
 
-    getGoogleGeocode: function (location) {
+    getGoogleGeocode: async function (location) {
         console.log(location);
+        console.log(process.env.REACT_APP_GOOGLE_MAP_API_KEY);
         return axios.get(`${GOOGLE_MAP_GEOCODE_URL}?address=${location}&key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`);
     }
 

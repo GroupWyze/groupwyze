@@ -21,11 +21,12 @@ export default class ShindigForm extends Component {
     super(props);
     this.state = {
       city: "",
-      date: "",
-      time: "",
+      date: {},
+      time: {},
       open: false,
-      user_id: "user3000test",
-      location: ""
+      user: props.user,
+      location: "",
+      zip: ""
     };
   }
 
@@ -63,9 +64,11 @@ export default class ShindigForm extends Component {
     let date = moment(this.state.date).format('L');
     let time = moment(this.state.time).format('LT');
     let dateTime = moment(date + ' ' + time, 'MM/DD/YYYY HH:mm');
+    let user_id = this.state.user ? this.state.user.sub : '';
 
     API.getGoogleGeocode(this.state.location)
       .then(response => {
+        console.log(response);
         let city = this.getCity(response);
         let zip = this.getZip(response);
 
@@ -73,16 +76,16 @@ export default class ShindigForm extends Component {
           city,
           time: time,
           date: date,
-          zip,
+          zip: zip,
           open: false
         }, () => {
           let newEvent = {
-            user_id: this.state.user_id,
+            user_id: user_id,
             city,
             shindigTime: dateTime,
             name: "Super Fun Extravaganza",
             address: this.state.location,
-            zip
+            zip: zip
           }
 
           API.createShindig(newEvent).then(res => {

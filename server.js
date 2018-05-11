@@ -7,7 +7,6 @@ const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const app = express();
 var moment = require("moment");
-require('dotenv').config();
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -25,7 +24,7 @@ app.use(bodyParser.json({
 }));
 
 const corsOptions = {
-  origin: ["https://groupwyze.herokuapp.com/", "http://localhost:3001", "http://localhost:3000"],
+  origin: ["https://groupwyze.herokuapp.com/", "http://localhost:3000", "http://localhost:3001"],
   optionsSuccessStatus: 200
 }
 
@@ -49,7 +48,7 @@ let force;
 if (process.env.NODE_ENV === "production") {
   force = false;
 } else {
-  force = true;
+  force = false;
 }
 
 db.sequelize.sync({

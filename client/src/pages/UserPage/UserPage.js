@@ -30,7 +30,7 @@ class UserPage extends Component {
 		return (
 			<div className="row">
 				<div className="col s2 offset-s5">
-					<ShindigForm />
+					<ShindigForm user={profile} />
 					{profile && <div>Hey, {profile.nickname}!</div>}
 				</div>
 			</div>

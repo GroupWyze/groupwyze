@@ -14,7 +14,9 @@ router.route('/')
     });
   })
   .post(function (req, res, next) {
+    console.log(req);
     db.Shindig.create(req.body).then(function (dbShindig) {
+
       res.json(dbShindig);
     });
   });
