@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ShindigForm from "../../components/ShindigForm";
 import { getProfile } from "../../utils/AuthService";
+import API from "../../utils/API";
 
 
 class UserPage extends Component {
@@ -17,8 +18,22 @@ class UserPage extends Component {
 		getProfile((err, profile) => {
 			this.setState({ profile });
 		});
+
 	}
 
+
+	componentDidUpdate(prevProps, prevState) {
+		this.loadUser();
+	}
+
+	loadUser = () => {
+		const { sub } = this.state.profile;
+		if (sub) {
+			API.getUser(encodeURI(sub))
+				.then(res => console.log(res))
+				.catch(err => console.log(err));
+		}
+	};
 	render() {
 		const { profile } = this.state;
 		console.log(profile);
